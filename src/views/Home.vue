@@ -20,18 +20,25 @@
       </div>
     </div>
   </div>
+
+    <div>
+    <TrendingArticles />
+  </div>
 </template>
 
 <script>
 import SidebarCategory from "@/components/SidebarCategory.vue";
 import BlogCard from "@/components/BlogCard.vue";
+import TrendingArticles from "@/components/TrendingArticles.vue";
+
+
 
 import img1 from "@/assets/img/1-2.jpg";
 import img2 from "@/assets/img/2-1.jpg";
 
 export default {
   name: "Home",
-  components: { SidebarCategory, BlogCard },
+  components: { SidebarCategory, BlogCard, TrendingArticles },
   data() {
     return {
       categories: [
