@@ -85,16 +85,22 @@ export default {
   color: #777;
   margin-bottom: 6px;
 }
+.author {
+ border-radius: 5px;
+  margin-bottom: 6px;
+  font-size: 13px;
 
+}
 .tag:hover,
 .author:hover {
-  color: #007bff;
+  background-color: #5138ee;
+  color: #f0f0f0;
 }
 /* Yazının hover rəngi */
 .title:hover,
 .excerpt:hover,
 .meta span:hover {
-  color: #007bff;
+  color: #5138ee;
 }
 
 .title {
