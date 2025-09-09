@@ -1,8 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+  <nav
+    :class="['navbar navbar-expand-lg custom-navbar shadow-sm', { 'fixed-top scrolled': isSticky }]"
+  >
     <div class="container">
 
-      <!-- Mobil toggle düyməsi -->
+      <!-- Mobil toggle -->
       <button
         class="navbar-toggler me-auto"
         type="button"
@@ -19,7 +21,7 @@
           <li class="nav-item"><router-link class="nav-link px-2" to="/blog">Blog</router-link></li>
           <li class="nav-item"><router-link class="nav-link px-2" to="/categories">Categories</router-link></li>
 
-          <!-- Pages Dropdown -->
+          <!-- Dropdown -->
           <li
             class="nav-item dropdown"
             @mouseover="openDropdown('pages')"
@@ -36,21 +38,21 @@
           <li class="nav-item"><router-link class="nav-link px-2" to="/contact">Contact</router-link></li>
         </ul>
 
-        <!-- Login sağda -->
+        <!-- Sağ tərəf: Login -->
         <div class="d-flex align-items-center ms-auto">
           <button v-if="!user" class="btn btn-outline-dark btn-sm">Login</button>
-          <span v-else class="text-light fw-semibold ms-2">Salam, {{ user.name }}</span>
+          <span v-else class="fw-semibold ms-2">Salam, {{ user.name }}</span>
         </div>
-
       </div>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, onBeforeUnmount, reactive, ref } from 'vue'
 
 const isNavCollapsed = ref(true)
+const isSticky = ref(false)
 
 const dropdowns = reactive({
   pages: false,
@@ -58,7 +60,7 @@ const dropdowns = reactive({
 
 // Demo user
 const user = ref(null)
-// user.value = { name: 'Nazim' } // Login olduqda aktiv et
+// user.value = { name: 'Nazim' }
 
 function openDropdown(name) {
   dropdowns[name] = true
@@ -67,41 +69,61 @@ function openDropdown(name) {
 function closeDropdown(name) {
   dropdowns[name] = false
 }
+
+function handleScroll() {
+  isSticky.value = window.scrollY > 100 // 100px-dən sonra fixed olsun
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <style scoped>
-.nav-link {
-  cursor: pointer;
+/* Normal navbar */
+.custom-navbar {
+  background: white;
+  transition: all 0.3s ease;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-  color: black;
+/* Linklər */
+.navbar-nav .nav-link {
+  color: black !important;
+  transition: color 0.3s;
+}
+.navbar-nav .nav-link:hover {
+  color: #5900ff !important;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover {
-  color: #5900ff;
-}
-
+/* Dropdown */
 .dropdown-menu {
   display: none;
   opacity: 0;
   transition: opacity 0.3s ease, transform 0.3s ease;
   transform: translateY(10px);
 }
-
 .dropdown-menu.show {
   display: block;
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Menyu elementləri arası az məsafə */
-.navbar-nav .nav-item + .nav-item {
-  margin-left: 0.5rem;
+/* Scroll olanda fixed olsun */
+.scrolled {
+  animation: slideDown 0.7s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Mobil üçün collapse */
-.navbar-collapse.show {
-  display: block !important;
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 </style>
