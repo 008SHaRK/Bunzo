@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <h1>Privacy Policy</h1>
+    <h1>Contact / Support</h1>
     <p>Bu səhifə hələ hazırlanır.</p>
   </div>
 </template>

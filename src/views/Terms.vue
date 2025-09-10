@@ -1,13 +1,12 @@
 <template>
-  <div class="container py-5">
+  <div class="page">
     <h1>Terms & Conditions</h1>
-    <p>Bu səhifə Terms & Conditions məzmunudur.</p>
+    <p>Bu səhifə hələ hazırlanır.</p>
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
-/* İstəyə görə stil əlavə et */
+.page { padding: 2rem; }
 </style>
