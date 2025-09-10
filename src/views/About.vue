@@ -4,7 +4,11 @@
     <div class="tabs-container">
       <div class="tabs">
         <!-- Home düyməsi -->
-        <RouterLink to="/" class="tab-link" :class="{ active: $route.path === '/' }">
+        <RouterLink
+          to="/"
+          class="tab-link"
+          :class="{ active: $route.path === '/' }"
+        >
           Home
           <span v-if="$route.path === '/'" class="dot">●</span>
         </RouterLink>
@@ -32,13 +36,13 @@
             </div>
             <h5 class="fw-bold">Open Platform</h5>
             <p class="text-muted">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry
-              has been the industry's standard dummy text ever since the 1500s when an
-              unknown printer took galley type and scrambled.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry has been the industry's standard dummy text ever since
+              the 1500s when an unknown printer took galley type and scrambled.
             </p>
             <p class="text-muted">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry
-              has been the industry's standard.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry has been the industry's standard.
             </p>
           </div>
         </div>
@@ -51,20 +55,22 @@
             </div>
             <h5 class="fw-bold">Digital Publishing</h5>
             <p class="text-muted">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry
-              has been the industry's standard dummy text ever since the 1500s when an
-              unknown printer took galley type and scrambled.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry has been the industry's standard dummy text ever since
+              the 1500s when an unknown printer took galley type and scrambled.
             </p>
             <p class="text-muted">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry
-              has been the industry's standard.
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry has been the industry's standard.
             </p>
           </div>
         </div>
 
         <!-- Image + Button -->
         <div class="col-md-4">
-          <div class="card h-100 shadow-sm border-0 position-relative overflow-hidden">
+          <div
+            class="card h-100 shadow-sm border-0 position-relative overflow-hidden"
+          >
             <img
               :src="aboutImg"
               class="card-img-top rounded-top"
@@ -79,6 +85,45 @@
             >
               Share your thinking →
             </RouterLink>
+          </div>
+        </div>
+      </div>
+      <div class="container my-5">
+        <div class="row align-items-center">
+          <!-- Sol tərəf: Başlıq -->
+          <div class="col-md-6 mb-4 mb-md-0">
+            <h1 class="main-title">
+              You Can <strong>Read</strong><br />
+              And <strong>Write</strong> With<br />
+              Bunzo.
+            </h1>
+          </div>
+
+          <!-- Sağ tərəf: Kartlar -->
+          <div class="col-md-6">
+            <!-- 1-ci kart -->
+            <div class="card p-4 border-0 border-bottom rounded-0">
+              <h5 class="fw-bold mb-2">Digital Publishing</h5>
+              <p class="text-muted mb-0">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text eve since the 1500 when an unknown printer took a galley
+                type scrambled’s make a type specimen book. It has survived not
+                only five centuries also the leap into electronic typesetting.
+              </p>
+            </div>
+
+            <!-- 2-ci kart -->
+            <div class="card p-4 border-0 rounded-0">
+              <h5 class="fw-bold mb-2">Digital Publishing</h5>
+              <p class="text-muted mb-0">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text eve since the 1500 when an unknown printer took a galley
+                type scrambled’s make a type specimen book. It has survived not
+                only five centuries also the leap into electronic typesetting.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -157,5 +202,15 @@ import aboutImg from "@/assets/img/about.jpg"; // ✅ şəkili düzgün import
   height: 40%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   z-index: 1;
+}
+.main-title {
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #333;
+}
+.card {
+  border: 1px solid #eee !important; /* incə boz xətt */
+  box-shadow: none !important;       /* shadow götürülür */
 }
 </style>
