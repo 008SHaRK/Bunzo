@@ -31,41 +31,9 @@
             @mouseover="openDropdown('categories')"
             @mouseleave="closeDropdown('categories')"
           >
-            <router-link class="nav-link dropdown-toggle px-2" to="/categories/:name"
+            <router-link class="nav-link px-2" to="/categories/:name"
               >Categories</router-link
             >
-            <ul class="dropdown-menu" :class="{ show: dropdowns.categories }">
-              <li>
-                <router-link class="dropdown-item" to="/categories/design"
-                  >Design</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories/drupal"
-                  >Drupal</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories/javascript"
-                  >Javascript</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories/joomla"
-                  >Joomla</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories/magento"
-                  >Magento</router-link
-                >
-              </li>
-              <li>
-                <router-link class="dropdown-item" to="/categories/wordpress"
-                  >Wordpress</router-link
-                >
-              </li>
-            </ul>
           </li>
 
           <!-- Pages Dropdown -->

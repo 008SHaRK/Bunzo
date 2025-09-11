@@ -6,6 +6,7 @@ import FAQ from '../views/FAQ.vue'
 import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import Terms from '../views/Terms.vue'
 import AllPosts from '../views/AllPosts.vue'
+import CategoryPage from "@/views/CategoryPage.vue";
 import Category from '../views/Category.vue' // Yeni
 
 const routes = [
@@ -16,6 +17,12 @@ const routes = [
   { path: '/privacy', component: PrivacyPolicy },
   { path: '/terms', component: Terms },
   { path: '/all-posts', component: AllPosts },
+   {
+    path: "/category/:name",
+    name: "CategoryPage",
+    component: CategoryPage,
+    props: true,
+  },
   { path: '/categories/:name', component: Category, name: 'category' }, // Dinamik route
 ]
 
