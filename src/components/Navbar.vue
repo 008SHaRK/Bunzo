@@ -31,7 +31,9 @@
             @mouseover="openDropdown('categories')"
             @mouseleave="closeDropdown('categories')"
           >
-            <a class="nav-link dropdown-toggle px-2" href="#">Categories</a>
+            <router-link class="nav-link dropdown-toggle px-2" to="/categories/:name"
+              >Categories</router-link
+            >
             <ul class="dropdown-menu" :class="{ show: dropdowns.categories }">
               <li>
                 <router-link class="dropdown-item" to="/categories/design"
