@@ -1,28 +1,37 @@
 <template>
-   <!-- Tabs -->
-    <div class="tabs-container">
-      <div class="tabs">
-        <RouterLink
-          to="/"
-          class="tab-link"
-          :class="{ active: $route.path === '/' }"
-        >
-          Home
-        </RouterLink>
+  <!-- Tabs -->
+  <div class="tabs-container">
+    <div class="tabs">
+      <!-- Home -->
+      <RouterLink
+        to="/"
+        class="tab-link"
+        :class="{ active: $route.path === '/' }"
+      >
+        Home
+      </RouterLink>
 
-        <RouterLink
-          to="/category/:name"
-          class="tab-link"
-          :class="{
-            active: $route.path === '/category/:name',
-            'blog-active': $route.path === '/category/:name',
-          }"
+      <!-- Categories -->
+      <RouterLink
+        to="/categories"
+        class="tab-link"
+        :class="{
+          active: $route.path === '/categories',
+          'blog-active': $route.path.startsWith('/category'),
+        }"
+      >
+        Categories
+        <span
+          v-if="$route.path === '/categories' || $route.path.startsWith('/category')"
+          class="dot"
         >
-          Categories
-          <span v-if="$route.path === '/category/:name'" class="dot">●</span>
-        </RouterLink>
-      </div>
+          ●
+        </span>
+      </RouterLink>
     </div>
+  </div>
+
+  <!-- Category grid -->
   <div class="category-page container my-5">
     <div class="grid-container">
       <div
@@ -70,11 +79,7 @@ export default {
 </script>
 
 <style scoped>
-/* sən yazdığın style olduğu kimi qalır */
-</style>
-
-
-<style scoped>
+/* Tabs */
 .tabs-container {
   display: flex;
   justify-content: center;
@@ -99,10 +104,7 @@ export default {
 .tab-link:hover {
   color: #000;
 }
-.tab-link.active {
-  font-weight: 600;
-  color: #000;
-}
+.tab-link.active,
 .tab-link.blog-active {
   font-weight: 600;
   color: #000;
@@ -111,58 +113,14 @@ export default {
   font-size: 12px;
   line-height: 1;
   color: #9b30ff;
-}
-.tabs-container {
-  display: flex;
-  justify-content: center;
-  background: #f4f2fb;
-  padding: 12px 24px;
-  border-radius: 8px;
-}
-.tabs {
-  display: flex;
-  gap: 24px;
-}
-.tab-link {
-  cursor: pointer;
-  color: #555;
-  font-size: 16px;
-  transition: color 0.3s, font-weight 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-}
-.tab-link:hover {
-  color: #000;
-}
-.tab-link.active {
-  font-weight: 600;
-  color: #000;
-}
-.tab-link.blog-active {
-  font-weight: 600;
-  color: #000;
-}
-.dot {
-  font-size: 12px;
-  line-height: 1;
-  color: #9b30ff;
-}
-.page-title {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 20px;
 }
 
-/* 3x3 grid üçün */
+/* Grid */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
-/* Cardlar TrendingTopic.vue stilinə uyğun */
 .card {
   width: 100%;
   height: 150px;
@@ -176,11 +134,9 @@ export default {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-
 .card:hover {
   transform: scale(1.05);
 }
-
 .card .overlay {
   position: absolute;
   top: 0;
@@ -191,11 +147,9 @@ export default {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .card:hover .overlay {
   opacity: 1;
 }
-
 .card span {
   color: #fff;
   font-weight: bold;

@@ -1,15 +1,42 @@
 <template>
   <div class="container my-5">
     <!-- Tabs -->
-    <Tabs
-      :active-tab="'categories'"
-      :selected-category="categoryName"
-    />
+    <div class="tabs-container">
+      <div class="tabs">
+        <RouterLink
+          to="/"
+          class="tab-link"
+          :class="{ active: $route.path === '/' }"
+        >
+          Home
+        </RouterLink>
 
-    <h2 class="mb-4 text-capitalize">{{ categoryName }} Posts</h2>
+        <RouterLink
+          to="/categories"
+          class="tab-link"
+          :class="{
+            active: $route.path === '/categories',
+            'blog-active': $route.path.startsWith('/category'),
+          }"
+        >
+          Categories
+          <span
+            v-if="$route.path === '/categories' || $route.path.startsWith('/category')"
+            class="dot"
+          >
+            ●
+          </span>
+        </RouterLink>
+      </div>
+    </div>
 
-    <div v-if="filteredPosts.length" class="row g-3">
-      <div v-for="item in filteredPosts" :key="item.id" class="col-md-6 col-lg-4">
+    <!-- Category posts -->
+    <div v-if="filteredPosts.length" class="row g-3 mt-4">
+      <div
+        v-for="item in filteredPosts"
+        :key="item.id"
+        class="col-md-6 col-lg-4"
+      >
         <div class="card h-100 shadow-sm article-card" @click="goToPost(item)">
           <div class="img-wrapper small-img">
             <img :src="item.image" class="card-img-top" alt="image" />
@@ -28,22 +55,22 @@
       </div>
     </div>
 
-    <p v-else>No posts found for {{ categoryName }}</p>
+    <p v-else class="mt-3">No posts found for {{ categoryName }}</p>
   </div>
 </template>
 
 <script>
 import posts from "@/data/posts.js";
-import Tabs from "@/components/Tabs.vue";
 import { useRouter } from "vue-router";
 
 export default {
-  components: { Tabs },
   setup() {
     const router = useRouter();
+
     const goToPost = (post) => {
       router.push(post.link);
     };
+
     return { goToPost };
   },
   computed: {
@@ -51,6 +78,7 @@ export default {
       return this.$route.params.name;
     },
     filteredPosts() {
+      if (!this.categoryName) return posts;
       return posts.filter(
         (p) => p.category.toLowerCase() === this.categoryName.toLowerCase()
       );
@@ -58,7 +86,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 /* Tabs */
@@ -86,7 +113,8 @@ export default {
 .tab-link:hover {
   color: #000;
 }
-.tab-link.active {
+.tab-link.active,
+.tab-link.blog-active {
   font-weight: 600;
   color: #000;
 }
@@ -106,8 +134,6 @@ export default {
 .article-card:hover {
   transform: translateY(-5px);
 }
-
-/* Şəkil ölçüsü kiçildilib */
 .img-wrapper.small-img {
   height: 120px;
   overflow: hidden;
@@ -121,16 +147,6 @@ export default {
 }
 .img-wrapper.small-img img:hover {
   transform: scale(1.1);
-}
-
-/* Mətn */
-.card-title a {
-  text-decoration: none;
-  color: #000;
-  transition: color 0.3s;
-}
-.card-title a:hover {
-  color: #007bff;
 }
 .category-badge {
   background: #f1f1f1;

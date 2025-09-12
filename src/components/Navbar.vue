@@ -31,7 +31,7 @@
             @mouseover="openDropdown('categories')"
             @mouseleave="closeDropdown('categories')"
           >
-            <router-link class="nav-link px-2" to="/categories/:name"
+            <router-link class="nav-link px-2" to="/categories"
               >Categories</router-link
             >
           </li>

@@ -7,7 +7,7 @@ import PrivacyPolicy from '../views/PrivacyPolicy.vue'
 import Terms from '../views/Terms.vue'
 import AllPosts from '../views/AllPosts.vue'
 import CategoryPage from "@/views/CategoryPage.vue";
-import Category from '../views/Category.vue' // Yeni
+import Categories from '../views/Categories.vue' // Statik categories səhifəsi
 
 const routes = [
   { path: '/', component: Home },
@@ -17,13 +17,17 @@ const routes = [
   { path: '/privacy', component: PrivacyPolicy },
   { path: '/terms', component: Terms },
   { path: '/all-posts', component: AllPosts },
-   {
-    path: "/category/:name",
-    name: "CategoryPage",
+
+  // Statik categories page
+  { path: '/categories', component: Categories, name: 'Categories' },
+
+  // Dinamik category page
+  {
+    path: '/category/:name',
     component: CategoryPage,
+    name: 'CategoryPage',
     props: true,
   },
-  { path: '/categories/:name', component: Category, name: 'category' }, // Dinamik route
 ]
 
 const router = createRouter({

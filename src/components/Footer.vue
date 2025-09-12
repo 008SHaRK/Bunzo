@@ -2,7 +2,6 @@
   <footer class="footer py-5">
     <div class="container">
       <div class="row">
-
         <!-- Logo və mətn -->
         <div class="col-md-3 mb-4">
           <div class="footer-logo mb-3">
@@ -10,7 +9,7 @@
               :src="logo"
               alt="Bunzo Logo"
               class="mb-2"
-              style="width: 40px;"
+              style="width: 40px"
             />
           </div>
           <p class="footer-text">
@@ -41,7 +40,9 @@
               placeholder="Your email address"
               v-model="form.email"
             />
-            <button class="btn btn-subscribe w-100" type="submit">Subscribe Now</button>
+            <button class="btn btn-subscribe w-100" type="submit">
+              Subscribe Now
+            </button>
           </form>
         </div>
 
@@ -73,21 +74,25 @@
         <div class="col-md-2 mb-4">
           <h5 class="footer-title">Category</h5>
           <ul class="footer-links">
-            <li><router-link to="/categories/design">Design</router-link></li>
-            <li><router-link to="/categories/drupal">Drupal</router-link></li>
-            <li><router-link to="/categories/javascript">Javascript</router-link></li>
-            <li><router-link to="/categories/joomla">Joomla</router-link></li>
-            <li><router-link to="/categories/magento">Magento</router-link></li>
-            <li><router-link to="/categories/wordpress">Wordpress</router-link></li>
+            <li><router-link to="/category/design">Design</router-link></li>
+            <li><router-link to="/category/drupal">Drupal</router-link></li>
+            <li>
+              <router-link to="/category/javascript">Javascript</router-link>
+            </li>
+            <li><router-link to="/category/joomla">Joomla</router-link></li>
+            <li><router-link to="/category/magento">Magento</router-link></li>
+            <li>
+              <router-link to="/category/wordpress">Wordpress</router-link>
+            </li>
           </ul>
         </div>
-
       </div>
     </div>
 
     <div class="footer-bottom text-center py-3">
       <p class="mb-0">
-        © 2023 Bunzo Made with <span class="text-danger">❤</span> by Codecarnival
+        © 2023 Bunzo Made with <span class="text-danger">❤</span> by
+        Codecarnival
       </p>
     </div>
   </footer>
