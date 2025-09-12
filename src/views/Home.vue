@@ -15,24 +15,23 @@
             :post="post"
           />
         </div>
+
+     
       </div>
     </div>
+
+    <!-- Aşağıdakı komponentlər -->
     <TrendingArticles />
-    
     <AuthorsSlider />
     <TrendingTopic />
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <!-- Solda başlıq -->
+    <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
       <h3 class="mb-0 featured-title">Featured Video</h3>
-
-      <!-- Sağda See more -->
       <a href="#" class="see-more d-flex align-items-center">
         <span>See more</span>
         <i class="bi bi-arrow-right ms-2"></i>
       </a>
     </div>
-
 
     <FeaturedVideo />
   </div>
@@ -41,13 +40,13 @@
 <script>
 import SidebarCategory from "@/components/SidebarCategory.vue";
 import BlogCard from "@/components/BlogCard.vue";
-
-import img1 from "@/assets/img/1-2.jpg";
-import img2 from "@/assets/img/2-1.jpg";
 import TrendingArticles from "@/components/TrendingArticles.vue";
 import AuthorsSlider from "@/components/AuthorsSlider.vue";
 import TrendingTopic from "@/components/TrendingTopic.vue";
 import FeaturedVideo from "@/components/FeaturedVideo.vue";
+
+import img1 from "@/assets/img/1-2.jpg";
+import img2 from "@/assets/img/2-1.jpg";
 
 export default {
   name: "Home",
@@ -60,52 +59,51 @@ export default {
         { title: "Javascript", image: img1, link: "/category/javascript" },
         { title: "Joomla", image: img2, link: "/category/joomla" },
       ],
-      posts: [
-        {
-          title: "The best website template layout for your bus...",
-          excerpt:
-            "You need to be sure there isn’t anything embarrassing hidden in the middle of text",
-          image: img1,
-          tag: "Javascript",
-          author: "Uzzal Hossain",
-          date: "12 Apr, 2022",
-          readTime: 3,
-          link: "/post/1",
-        },
-        {
-          title: "Make your store stand out from the others by ...",
-          excerpt:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry has been",
-          image: img2,
-          tag: "Magento",
-          author: "Uzzal Hossain",
-          date: "12 Apr, 2022",
-          readTime: 3,
-          link: "/post/2",
-        },
-        {
-          title: "Third post",
-          excerpt: "Third post excerpt",
-          image: img1,
-          tag: "Design",
-          author: "Uzzal Hossain",
-          date: "13 Apr, 2022",
-          readTime: 2,
-          link: "/post/3",
-        },
-        {
-          title: "Fourth post",
-          excerpt: "Fourth post excerpt",
-          image: img2,
-          tag: "Drupal",
-          author: "Uzzal Hossain",
-          date: "14 Apr, 2022",
-          readTime: 4,
-          link: "/post/4",
-        },
-      ],
+     posts: [
+  {
+    id: 1,
+    title: "The best website template layout for your business",
+    excerpt: "You need to be sure there isn’t anything embarrassing hidden in the middle of text",
+    image: img1,
+    tag: "Javascript",
+    author: "Uzzal Hossain",
+    date: "12 Apr, 2022",
+    readTime: 3,
+  },
+  {
+    id: 2,
+    title: "Make your store stand out from the others",
+    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+    image: img2,
+    tag: "Magento",
+    author: "Uzzal Hossain",
+    date: "12 Apr, 2022",
+    readTime: 3,
+  },
+  {
+    id: 3,
+    title: "Third post",
+    excerpt: "Third post excerpt",
+    image: img1,
+    tag: "Design",
+    author: "Uzzal Hossain",
+    date: "13 Apr, 2022",
+    readTime: 2,
+  },
+  {
+    id: 4,
+    title: "Fourth post",
+    excerpt: "Fourth post excerpt",
+    image: img2,
+    tag: "Drupal",
+    author: "Uzzal Hossain",
+    date: "14 Apr, 2022",
+    readTime: 4,
+  },
+],
+      // Daha çox yazı əlavə edin...
       currentPage: 1,
-      postsPerPage: 2, // hər səhifədə 2 post
+      postsPerPage: 2,
     };
   },
   computed: {
@@ -133,12 +131,12 @@ export default {
   margin-top: 40px;
 }
 
-/* Sağ tərəf yazılar */
 .post-list {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* postlar arası məsafə */
+  gap: 20px;
 }
+
 .featured-title {
   font-weight: 600;
   color: #222;
@@ -164,6 +162,7 @@ export default {
 .see-more:hover i {
   transform: translateX(3px);
 }
+
 .see-more span,
 .see-more i {
   font-size: 14px;

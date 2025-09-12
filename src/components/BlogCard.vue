@@ -1,5 +1,5 @@
 <template>
-  <div class="blog-card" @click="goToPost(post.link)">
+  <div class="blog-card" @click="goToPost(post.id)">
     <div class="blog-img">
       <img :src="post.image" alt="post image" />
     </div>
@@ -21,19 +21,16 @@
 <script>
 export default {
   name: "BlogCard",
-  props: {
-    post: {
-      type: Object,
-      required: true,
-    },
-  },
+  props: { post: { type: Object, required: true } },
   methods: {
-    goToPost(link) {
-      this.$router.push(link);
+    goToPost(id) {
+      this.$router.push(`/post/${id}`);
     },
   },
 };
 </script>
+
+
 
 <style scoped>
 .blog-card {
@@ -86,10 +83,9 @@ export default {
   margin-bottom: 6px;
 }
 .author {
- border-radius: 5px;
+  border-radius: 5px;
   margin-bottom: 6px;
   font-size: 13px;
-
 }
 .tag:hover,
 .author:hover {
@@ -121,10 +117,12 @@ export default {
   display: flex;
   gap: 15px;
 }
+
 @media (max-width: 768px) {
   .blog-card {
     flex-direction: column;
     gap: 10px;
+    margin-left: 0;
   }
 
   .blog-img {
@@ -148,5 +146,4 @@ export default {
     font-size: 13px;
   }
 }
-
 </style>

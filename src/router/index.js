@@ -8,6 +8,7 @@ import Terms from '../views/Terms.vue'
 import AllPosts from '../views/AllPosts.vue'
 import CategoryPage from "@/views/CategoryPage.vue";
 import Categories from '../views/Categories.vue' // Statik categories səhifəsi
+import BlogDetail from '../views/BlogDetail.vue' // 🔹 Yeni əlavə
 
 const routes = [
   { path: '/', component: Home },
@@ -26,6 +27,13 @@ const routes = [
     path: '/category/:name',
     component: CategoryPage,
     name: 'CategoryPage',
+    props: true,
+  },
+    // 🔹 Dinamik blog detail səhifəsi
+  {
+    path: '/post/:id',
+    name: 'BlogDetail',
+    component: BlogDetail,
     props: true,
   },
 ]
