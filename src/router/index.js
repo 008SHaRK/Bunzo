@@ -10,6 +10,7 @@ import CategoryPage from "@/views/CategoryPage.vue";
 import Categories from '../views/Categories.vue' // Statik categories səhifəsi
 import BlogDetail from '../views/BlogDetail.vue' // 🔹 Yeni əlavə
 
+
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },

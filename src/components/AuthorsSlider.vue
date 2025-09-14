@@ -36,19 +36,25 @@
         :class="layout === 'grid' ? 'col-md-4' : 'col-md-6'"
       >
         <div class="card h-100 shadow-sm article-card">
-          <div
+          <!-- Şəkil -->
+          <router-link
+            :to="`/post/${item.id}`"
             class="img-wrapper"
             :class="{ 'small-img': layout === 'grid' }"
           >
             <img :src="item.image" class="card-img-top" alt="image" />
-          </div>
+          </router-link>
+
+          <!-- Məlumat -->
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
               <span class="badge category-badge me-2">{{ item.tag }}</span>
               <small class="text-muted">By admin</small>
             </div>
             <h6 class="card-title mt-1">
-              <a :href="item.link">{{ item.title }}</a>
+              <router-link :to="`/post/${item.id}`">
+                {{ item.title }}
+              </router-link>
             </h6>
             <p class="text-muted small mb-0">
               📅 {{ item.date }} • ⏱ {{ item.readTime }} min read
@@ -69,7 +75,7 @@ export default {
   props: {
     layout: {
       type: String,
-      default: "slider", // Home üçün default slider
+      default: "slider",
     },
   },
   data() {
@@ -77,14 +83,14 @@ export default {
       currentPage: 1,
       itemsPerPage: 4,
       items: [
-        { id: 1, title: "Create beautiful designs", tag: "Javascript", image: img1, date: "12 Apr, 2022", readTime: 3, link: "/post/1" },
-        { id: 2, title: "WooLentor powerful plugin", tag: "Wordpress", image: img2, date: "12 Apr, 2022", readTime: 3, link: "/post/2" },
-        { id: 3, title: "Design best practices", tag: "Design", image: img1, date: "13 Apr, 2022", readTime: 4, link: "/post/3" },
-        { id: 4, title: "Drupal modules you need", tag: "Drupal", image: img2, date: "14 Apr, 2022", readTime: 2, link: "/post/4" },
-        { id: 5, title: "Next.js vs Vue.js", tag: "Javascript", image: img1, date: "15 Apr, 2022", readTime: 5, link: "/post/5" },
-        { id: 6, title: "Modern UI trends", tag: "Design", image: img2, date: "16 Apr, 2022", readTime: 3, link: "/post/6" },
-        { id: 7, title: "SEO for developers", tag: "SEO", image: img1, date: "17 Apr, 2022", readTime: 4, link: "/post/7" },
-        { id: 8, title: "Headless CMS explained", tag: "CMS", image: img2, date: "18 Apr, 2022", readTime: 2, link: "/post/8" },
+        { id: 1, title: "Create beautiful designs", tag: "Javascript", image: img1, date: "12 Apr, 2022", readTime: 3 },
+        { id: 2, title: "WooLentor powerful plugin", tag: "Wordpress", image: img2, date: "12 Apr, 2022", readTime: 3 },
+        { id: 3, title: "Design best practices", tag: "Design", image: img1, date: "13 Apr, 2022", readTime: 4 },
+        { id: 4, title: "Drupal modules you need", tag: "Drupal", image: img2, date: "14 Apr, 2022", readTime: 2 },
+        { id: 5, title: "Next.js vs Vue.js", tag: "Javascript", image: img1, date: "15 Apr, 2022", readTime: 5 },
+        { id: 6, title: "Modern UI trends", tag: "Design", image: img2, date: "16 Apr, 2022", readTime: 3 },
+        { id: 7, title: "SEO for developers", tag: "SEO", image: img1, date: "17 Apr, 2022", readTime: 4 },
+        { id: 8, title: "Headless CMS explained", tag: "CMS", image: img2, date: "18 Apr, 2022", readTime: 2 },
       ],
     };
   },
@@ -111,7 +117,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .article-card {
   background: #f9f9f9;
@@ -133,7 +138,7 @@ export default {
 }
 .img-wrapper.small-img img {
   height: 150px;
-  object-fit: cover;
+  object-fit: cov
 }
 
 .img-wrapper img {
