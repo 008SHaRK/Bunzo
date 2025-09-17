@@ -1,7 +1,8 @@
+<!-- BlogCard.vue -->
 <template>
   <div class="blog-card" @click="goToPost(post.id)">
-    <div class="blog-img">
-      <img :src="post.image" alt="post image" />
+    <div class="blog-img-wrapper">
+      <img :src="post.image" alt="post image" class="blog-img"/>
     </div>
     <div class="blog-content">
       <div class="info">
@@ -36,30 +37,34 @@ export default {
   gap: 20px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin-bottom: 20px;
-  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+/* Image wrapper */
+.blog-img-wrapper {
+  width: 100%;
+  max-width: 530px;
+  height: 265px; /* Maksimum ölçü */
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
 }
 
 .blog-img {
   width: 100%;
-  max-width: 530px;
-  height: 265px;
-  overflow: hidden;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-.blog-img img {
-  width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  object-fit: cover; /* Stretch və düzgün nisbət */
+  display: block;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.blog-card:hover .blog-img img {
+.blog-card:hover .blog-img {
   transform: scale(1.08);
+  opacity: 0.95;
 }
 
+/* Content */
 .blog-content {
   display: flex;
   flex-direction: column;
@@ -68,7 +73,7 @@ export default {
   max-width: 500px;
 }
 
-/* Tag, info, title, excerpt, meta */
+/* Info, tag, title, excerpt, meta */
 .tag {
   background: #f0f0f0;
   padding: 2px 8px;
@@ -84,9 +89,7 @@ export default {
   margin-bottom: 6px;
 }
 .author {
-  border-radius: 5px;
   font-size: 13px;
-  margin-bottom: 6px;
 }
 .title {
   font-size: 20px;
@@ -123,8 +126,7 @@ export default {
     flex-direction: column;
     gap: 15px;
   }
-  .blog-img {
-    width: 100%;
+  .blog-img-wrapper {
     max-width: 100%;
     height: 220px;
   }
@@ -134,16 +136,13 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .blog-img {
+  .blog-img-wrapper {
     height: 200px;
-  }
-  .blog-content {
-    max-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .blog-img {
+  .blog-img-wrapper {
     height: 180px;
   }
   .title {

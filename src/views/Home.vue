@@ -2,10 +2,9 @@
   <div class="container blog-layout">
  <div class="row gx-3">
   <!-- Sidebar -->
-  <div class="col-12 col-md-3 mb-4 mb-md-0">
-    <SidebarCategory :categories="categories" />
-  </div>
-
+ <div class="col-12 col-md-3 mb-4 mb-md-0">
+  <SidebarCategory :categories="categories.slice(0,4)" />
+</div>
   <!-- Bloglar -->
   <div class="col-12 col-md-9">
     <div class="post-list d-flex flex-column gap-3">
@@ -158,7 +157,7 @@ export default {
 }
 
 .see-more:hover i {
-  transform: translateX(3px);
+  transform: translateX(3px); 
 }
 
 .see-more span,
