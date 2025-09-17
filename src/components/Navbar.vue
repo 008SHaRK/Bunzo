@@ -242,6 +242,8 @@ function submitForm() {
   }
 }
 
+
+
 /* Modal styles */
 .modal-content {
   border-radius: 10px;

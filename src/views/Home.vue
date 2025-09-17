@@ -1,24 +1,22 @@
 <template>
   <div class="container blog-layout">
-    <div class="row gx-3">
-      <!-- Sol tərəf: Kateqoriyalar -->
-      <div class="col-md-3 mb-4 mb-md-0">
-        <SidebarCategory :categories="categories" />
-      </div>
+ <div class="row gx-3">
+  <!-- Sidebar -->
+  <div class="col-12 col-md-3 mb-4 mb-md-0">
+    <SidebarCategory :categories="categories" />
+  </div>
 
-      <!-- Sağ tərəf: Yazılar -->
-      <div class="col-md-9">
-        <div class="post-list">
-          <BlogCard
-            v-for="post in paginatedPosts"
-            :key="post.link"
-            :post="post"
-          />
-        </div>
-
-     
-      </div>
+  <!-- Bloglar -->
+  <div class="col-12 col-md-9">
+    <div class="post-list d-flex flex-column gap-3">
+      <BlogCard
+        v-for="post in paginatedPosts"
+        :key="post.link"
+        :post="post"
+      />
     </div>
+  </div>
+</div>
 
     <!-- Aşağıdakı komponentlər -->
     <TrendingArticles />

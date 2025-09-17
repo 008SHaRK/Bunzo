@@ -6,8 +6,8 @@
         <div class="left-side">
           <h3 class="title">Trending Topic</h3>
           <div class="controls">
-            <button class="nav-btn" @click="prevSlide">←</button>
-            <button class="nav-btn" @click="nextSlide">→</button>
+            <button class="nav-btn" @click="prevSlide"><i class="bi bi-arrow-left-short"></i></button>
+            <button class="nav-btn" @click="nextSlide"><i class="bi bi-arrow-right-short"></i></button>
           </div>
         </div>
 

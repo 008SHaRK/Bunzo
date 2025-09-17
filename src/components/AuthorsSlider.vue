@@ -31,7 +31,7 @@
       class="row g-3"
     >
       <div
-        v-for="item in displayedItems"
+        v-for="item in displayedItems" 
         :key="item.id"
         :class="layout === 'grid' ? 'col-md-4' : 'col-md-6'"
       >

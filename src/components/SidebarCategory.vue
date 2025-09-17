@@ -41,7 +41,7 @@ export default {
   overflow: hidden;
   border-radius: 10px;
   cursor: pointer;
-  width: 250.5px;
+  width: 100%;
   height: 125px;
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@ export default {
 }
 
 .category-card:hover {
-  background-color: #007bff; /* hover zamanı mavı ton */
+  background-color: #007bff;
 }
 
 .category-img {
@@ -61,7 +61,7 @@ export default {
 }
 
 .category-card:hover .category-img {
-  opacity: 0.7; /* hover zamanı şəklin tonunu yüngülləşdir */
+  opacity: 0.7;
 }
 
 .category-title {
@@ -73,33 +73,18 @@ export default {
   text-shadow: 0px 2px 4px rgba(0,0,0,0.7);
   z-index: 2;
 }
-@media (max-width: 768px) {
-  .blog-card {
-    flex-direction: column;
-    gap: 10px;
-  }
 
-  .blog-img {
-    width: 100%;
-    height: 200px; /* mobil üçün daha qısa */
-  }
-
-  .blog-content {
-    max-width: 100%;
-  }
-
-  .title {
-    font-size: 18px;
-  }
-
-  .excerpt {
-    font-size: 14px;
-  }
-
-  .meta span {
-    font-size: 13px;
-  }
+/* Responsive */
+@media (max-width: 992px) {
+  .category-card { height: 140px; }
 }
 
+@media (max-width: 768px) {
+  .category-card { height: 150px; }
+}
 
+@media (max-width: 480px) {
+  .category-card { height: 130px; }
+  .category-title { font-size: 14px; }
+}
 </style>

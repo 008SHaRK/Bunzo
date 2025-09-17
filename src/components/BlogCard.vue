@@ -30,22 +30,23 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
 .blog-card {
   display: flex;
   gap: 20px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  margin-left: -60px;
+  margin-bottom: 20px;
+  max-width: 100%;
 }
 
 .blog-img {
-  width: 530px; /* böyük şəkil eni */
-  height: 265px; /* böyük şəkil hündürlüyü */
+  width: 100%;
+  max-width: 530px;
+  height: 265px;
   overflow: hidden;
   border-radius: 12px;
+  flex-shrink: 0;
 }
 
 .blog-img img {
@@ -55,7 +56,6 @@ export default {
   transition: transform 0.4s ease;
 }
 
-/* Hover effekti yalnız şəkilə */
 .blog-card:hover .blog-img img {
   transform: scale(1.08);
 }
@@ -64,16 +64,17 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1;
   max-width: 500px;
 }
 
+/* Tag, info, title, excerpt, meta */
 .tag {
   background: #f0f0f0;
   padding: 2px 8px;
   border-radius: 6px;
   margin-bottom: 6px;
   font-size: 14px;
-  max-width: fit-content;
 }
 .info {
   display: flex;
@@ -84,33 +85,19 @@ export default {
 }
 .author {
   border-radius: 5px;
-  margin-bottom: 6px;
   font-size: 13px;
+  margin-bottom: 6px;
 }
-.tag:hover,
-.author:hover {
-  background-color: #5138ee;
-  color: #f0f0f0;
-}
-/* Yazının hover rəngi */
-.title:hover,
-.excerpt:hover,
-.meta span:hover {
-  color: #5138ee;
-}
-
 .title {
   font-size: 20px;
   font-weight: bold;
   margin: 6px 0;
 }
-
 .excerpt {
   font-size: 15px;
   color: #555;
   margin-bottom: 10px;
 }
-
 .meta {
   font-size: 14px;
   color: #777;
@@ -118,32 +105,55 @@ export default {
   gap: 15px;
 }
 
-@media (max-width: 768px) {
+/* Hover effektlər */
+.tag:hover,
+.author:hover {
+  background-color: #5138ee;
+  color: #f0f0f0;
+}
+.title:hover,
+.excerpt:hover,
+.meta span:hover {
+  color: #5138ee;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
   .blog-card {
     flex-direction: column;
-    gap: 10px;
-    margin-left: 0;
+    gap: 15px;
   }
-
   .blog-img {
     width: 100%;
-    height: 200px; /* mobil üçün daha qısa */
+    max-width: 100%;
+    height: 220px;
   }
-
   .blog-content {
     max-width: 100%;
   }
+}
 
+@media (max-width: 768px) {
+  .blog-img {
+    height: 200px;
+  }
+  .blog-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-img {
+    height: 180px;
+  }
   .title {
-    font-size: 18px;
+    font-size: 16px;
   }
-
   .excerpt {
-    font-size: 14px;
-  }
-
-  .meta span {
     font-size: 13px;
+  }
+  .meta span {
+    font-size: 12px;
   }
 }
 </style>
