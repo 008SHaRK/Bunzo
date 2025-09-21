@@ -10,6 +10,9 @@ const messages = {
     pages: "Səhifələr",
     login: "Login",
     register: "Qeydiyyat",
+    "already-have-account": "Artıq hesabınız var?",
+    "dont-have-account": "Hesabınız yoxdur?",
+    
   },
   en: {
     home: "Home",
@@ -20,6 +23,8 @@ const messages = {
     pages: "Pages",
     login: "Login",
     register: "Register",
+    "already-have-account": "Already have an account?",
+    "dont-have-account": "Don't have an account?",
   },
 };
 
