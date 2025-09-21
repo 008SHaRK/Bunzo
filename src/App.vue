@@ -20,6 +20,7 @@ import Navbar from "./components/Navbar.vue";
 import FooterSection from "./components/Footer.vue";
 import ScrollToTop from "./components/ScrollToTop.vue";
 import GlobalLoader from "./components/GlobalLoader.vue";
+import CommentBox from "./components/CommentBox.vue";
 
 const loading = ref(true);
 

@@ -3,12 +3,8 @@
     <!-- Tabs / Breadcrumb -->
     <div class="tabs-container mb-4">
       <div class="tabs">
-        <a href="/" class="tab-link">
-          Home <span class="dot" v-if="false">●</span>
-        </a>
-        <a href="/all-posts" class="tab-link">
-          Blog <span class="dot" v-if="false">●</span>
-        </a>
+        <a href="/" class="tab-link">Home</a>
+        <a href="/all-posts" class="tab-link">Blog</a>
         <span class="tab-link active">{{ post.title }}</span>
       </div>
     </div>
@@ -25,7 +21,7 @@
     <!-- Title -->
     <h1 class="post-title mb-2 text-center">{{ post.title }}</h1>
 
-    <!-- HTML -->
+    <!-- Tag -->
     <div class="tag-container mb-4">
       <span class="post-tag">{{ post.tag }}</span>
     </div>
@@ -37,61 +33,59 @@
       class="img-fluid mb-4 mx-auto d-block"
     />
 
-    <!-- Content paragraphs -->
-    <p class="content-normal">
-      There are many variations of passages of Lorem Ipsum available, but the
-      majority have suffered alteration in some form, by injected humour, or
-      randomised words which don’t look even slightly believable. If you are
-      going to use a passage of Lorem Ipsum, you need to be sure there isn’t
-      anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-      generators on the Internet tend to repeat predefined chunks as necessary,
-      making this the first true generator on the Internet.
-    </p>
+    <!-- Content -->
+    <div class="post-content">
+      <p v-html="post.content"></p>
+    </div>
 
-    <p class="content-bold">
-      Create beautiful designs that will help convert more customers
-    </p>
+    <!-- Share Buttons -->
+    <div class="share-container mt-4">
+      <span class="share-title">Share this article:</span>
+      <div class="share-buttons">
+        <a
+          v-for="(item, index) in socials"
+          :key="index"
+          :href="item.link"
+          target="_blank"
+          class="share-btn"
+        >
+          <i :class="item.icon"></i>
+        </a>
+      </div>
+    </div>
 
-    <p class="content-normal">
-      Passages of Lorem Ipsum available, but the majority have suffered
-      alteration in some form, by injected humour, or randomised words which
-      don’t look even slightly believable. If you are going to use a passage of
-      Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden
-      in the middle of text.
-      <br />
-      you need to be sure there isn’t anything embarrassing hidden in the middle
-      of text. All the Lorem Ipsum generators on the Internet tend to repeat
-      predefined chunks as necessary
-      <br />
-      you need to be sure there isn’t anything embarrassing hidden in the middle
-      of text. All the Lorem Ipsum embarrassing hidden in the middle of text.
-      All the Lorem Ipsum generators on the Internet tend to repeat predefined
-      <br />
-      you need to be sure there isn’t anything embarrassing hidden in the middle
-      of text. All the Lorem Ipsum generators on the Internet tend to repeat
-      predefined chunks as necessary
-    </p>
+    <!-- CKEditor -->
+   <CommentBox />
   </div>
 
   <div v-else class="container my-5 text-center">
     <h2>Post tapılmadı!</h2>
   </div>
 </template>
+
 <script>
 import img1 from "@/assets/img/1-2.jpg";
 import img2 from "@/assets/img/2-1.jpg";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { CKEditor } from "@ckeditor/ckeditor5-vue";
+import CommentBox from '@/components/CommentBox.vue'
+
 
 export default {
   name: "BlogDetail",
+  components: { CKEditor, CommentBox },
   data() {
     return {
       post: null,
+      editor: ClassicEditor,
+      editorData: "",
+
       posts: [
         {
           id: 1,
           title: "The best website template layout",
-          content: "Full post content here...",
-          tag: "Javascript", // <-- bunu əlavə et
+          content: "<p>Full post content here...</p>",
+          tag: "Javascript",
           image: img1,
           author: "Uzzal Hossain",
           date: "12 Apr, 2022",
@@ -100,42 +94,43 @@ export default {
         {
           id: 2,
           title: "Make your store stand out",
-          content: "Full post content here...",
-          tag: "Magento", // <-- əlavə
+          content: "<p>Full post content here...</p>",
+          tag: "Magento",
           image: img2,
           author: "Uzzal Hossain",
           date: "12 Apr, 2022",
           readTime: 3,
         },
+      ],
+
+      socials: [
         {
-          id: 3,
-          title: "Third post",
-          content: "Third post full content",
-          tag: "Design", // <-- əlavə
-          image: img1,
-          author: "Uzzal Hossain",
-          date: "13 Apr, 2022",
-          readTime: 2,
+          name: "facebook",
+          icon: "fab fa-facebook-f",
+          link: "https://facebook.com",
         },
         {
-          id: 4,
-          title: "Fourth post",
-          content: "Fourth post full content",
-          tag: "Drupal", // <-- əlavə
-          image: img2,
-          author: "Uzzal Hossain",
-          date: "14 Apr, 2022",
-          readTime: 4,
+          name: "twitter",
+          icon: "fab fa-twitter",
+          link: "https://twitter.com",
         },
+        {
+          name: "linkedin",
+          icon: "fab fa-linkedin-in",
+          link: "https://linkedin.com",
+        },
+        { name: "skype", icon: "fab fa-skype", link: "https://skype.com" },
       ],
     };
   },
   created() {
     const postId = parseInt(this.$route.params.id);
     this.post = this.posts.find((p) => p.id === postId);
+    if (this.post) this.editorData = this.post.content;
   },
 };
 </script>
+
 <style scoped>
 /* Tabs */
 .tabs-container {
@@ -145,32 +140,23 @@ export default {
   padding: 10px 20px;
   border-radius: 8px;
 }
-
 .tabs {
   display: flex;
   gap: 20px;
 }
-
 .tab-link {
   cursor: pointer;
   color: #555;
   font-size: 16px;
   transition: color 0.3s;
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 6px;
-  text-decoration: none;
 }
-
 .tab-link.active {
   font-weight: 600;
   color: #000;
-}
-
-.dot {
-  font-size: 10px;
-  line-height: 0;
-  color: #5f3dc4;
 }
 
 /* Post Meta */
@@ -185,15 +171,12 @@ export default {
   font-size: 32px;
   color: #222;
 }
-
-/* CSS */
 .tag-container {
   display: flex;
-  justify-content: center; /* mərkəzləşdirir */
+  justify-content: center;
 }
-
 .post-tag {
-  display: inline-block; /* text boyu qutu */
+  display: inline-block;
   background: #f0f0f0;
   padding: 4px 10px;
   border-radius: 6px;
@@ -211,39 +194,58 @@ img {
 }
 
 /* Content */
-.content-normal,
-.content-bold {
-  text-align: left; /* paragraphlar sola düzülmüş */
-}
-
-.content-normal {
+.post-content p {
   font-size: 16px;
   line-height: 1.8;
   color: #444;
   margin-bottom: 20px;
 }
 
-.content-bold {
-  font-size: 18px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 20px;
+/* Share */
+.share-container {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Arial, sans-serif;
+}
+.share-title {
+  font-weight: 600;
+  color: #333;
+}
+.share-buttons {
+  display: flex;
+  gap: 8px;
+}
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #f7f7f7;
+  border-radius: 6px;
+  color: #111;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.share-btn:hover {
+  background: #e0e0e0;
 }
 
 @media (max-width: 768px) {
   .post-title {
     font-size: 26px;
   }
-
-  .content-normal,
-  .content-bold {
+  .post-content p {
     font-size: 15px;
   }
-
   .tabs-container {
     padding: 8px 12px;
   }
-
   .tab-link {
     font-size: 14px;
   }
