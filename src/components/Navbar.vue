@@ -6,7 +6,6 @@
     ]"
   >
     <div class="container">
-      <!-- Mobil toggle -->
       <button
         class="navbar-toggler me-auto"
         type="button"
@@ -15,7 +14,6 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Menyu -->
       <div :class="['collapse navbar-collapse', { show: !isNavCollapsed }]">
         <ul class="navbar-nav w-100">
           <li class="nav-item" v-for="link in mainLinks" :key="link.name">
@@ -23,11 +21,10 @@
               class="nav-link px-2"
               :to="link.to"
               @click="closeNav"
-              >{{ link.name }}</router-link
+              >{{ $t(link.key) }}</router-link
             >
           </li>
 
-          <!-- Dropdown-lar -->
           <li
             v-for="dropdown in dropdownLinks"
             :key="dropdown.name"
@@ -41,7 +38,7 @@
               href="#"
               @click.prevent="toggleDropdown(dropdown.key)"
             >
-              {{ dropdown.name }}
+              {{ $t(dropdown.key) }}
             </a>
             <ul
               class="dropdown-menu category-dropdown"
@@ -59,14 +56,23 @@
           </li>
         </ul>
 
-        <!-- Sağ tərəf: Login -->
+        <!-- Sağ tərəf: Dil və Login -->
         <div class="d-flex align-items-center ms-auto mt-3 mt-lg-0">
+          <select
+            v-model="$i18n.locale"
+            class="form-select form-select-sm me-3"
+            style="width: auto"
+          >
+            <option value="az">AZ</option>
+            <option value="en">EN</option>
+          </select>
+
           <button
             v-if="!user"
             class="btn btn-primary btn-sm"
             @click="showModal = true"
           >
-            Login
+            {{ $t("login") }}
           </button>
           <span v-else class="fw-semibold ms-2">Salam, {{ user.name }}</span>
         </div>
@@ -84,7 +90,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">{{ isRegister ? "Register" : "Login" }}</h5>
+            <h5 class="modal-title">
+              {{ isRegister ? $t("register") : $t("login") }}
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -121,7 +129,7 @@
                 />
               </div>
               <button class="btn btn-primary w-100">
-                {{ isRegister ? "Register" : "Login" }}
+                {{ isRegister ? $t("register") : $t("login") }}
               </button>
             </form>
           </div>
@@ -133,7 +141,7 @@
                   : "Don't have an account?"
               }}
               <a href="#" @click.prevent="toggleForm">{{
-                isRegister ? "Login" : "Register"
+                isRegister ? $t("login") : $t("register")
               }}</a>
             </span>
           </div>
@@ -158,27 +166,22 @@ const user = ref(null);
 const form = reactive({ name: "", email: "", password: "" });
 
 const mainLinks = [
-  { name: "Home", to: "/" },
-  { name: "About", to: "/about" },
-  { name: "Blog", to: "/all-posts" },
-  { name: "Contact", to: "/contact" },
+  { key: "home", to: "/" },
+  { key: "about", to: "/about" },
+  { key: "blog", to: "/all-posts" },
+  { key: "contact", to: "/contact" },
 ];
 
 const dropdownLinks = [
   {
-    name: "Categories",
     key: "categories",
     items: [
       { name: "Design", to: "/category/design" },
       { name: "Drupal", to: "/category/drupal" },
       { name: "Javascript", to: "/category/javascript" },
-      { name: "Joomla", to: "/category/joomla" },
-      { name: "Magento", to: "/category/magento" },
-      { name: "Wordpress", to: "/category/wordpress" },
     ],
   },
   {
-    name: "Pages",
     key: "pages",
     items: [
       { name: "FAQ", to: "/faq" },
@@ -243,8 +246,6 @@ onBeforeUnmount(() => {
 .navbar-nav .nav-link:hover {
   color: #5900ff !important;
 }
-
-/* Dropdown */
 .category-dropdown {
   display: none;
   opacity: 0;
@@ -271,8 +272,6 @@ onBeforeUnmount(() => {
   color: #fff;
   border-radius: 6px;
 }
-
-/* Sticky Navbar */
 .scrolled {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: slideDown 0.5s ease;
@@ -285,8 +284,6 @@ onBeforeUnmount(() => {
     transform: translateY(0);
   }
 }
-
-/* Modal */
 .modal-content {
   border-radius: 12px;
   overflow: hidden;

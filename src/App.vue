@@ -13,23 +13,22 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue"; // ✅ ref import edildi
+import { ref, onMounted } from "vue";
 import Topbar from "./components/Topbar.vue";
 import LogoAndBanner from "./components/LogoAdBanner.vue";
 import Navbar from "./components/Navbar.vue";
 import FooterSection from "./components/Footer.vue";
 import ScrollToTop from "./components/ScrollToTop.vue";
 import GlobalLoader from "./components/GlobalLoader.vue";
-import CommentBox from "./components/CommentBox.vue";
 
 const loading = ref(true);
 
 onMounted(() => {
-  document.body.style.overflow = 'hidden'; // scroll deaktiv
+  document.body.style.overflow = 'hidden';
 
   setTimeout(() => {
     loading.value = false;
-    document.body.style.overflow = 'auto'; // scroll aç
+    document.body.style.overflow = 'auto';
   }, 1000);
 });
 </script>
