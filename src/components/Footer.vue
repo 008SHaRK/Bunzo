@@ -26,7 +26,7 @@
 
         <!-- Subscribe -->
         <div class="col-md-3 mb-4">
-          <h5 class="footer-title">Subscribe</h5>
+          <h5 class="footer-title">{{ $t("subscribe_now") }}</h5>
           <form @submit.prevent="subscribe">
             <input
               type="text"
@@ -41,38 +41,38 @@
               v-model="form.email"
             />
             <button class="btn btn-subscribe w-100" type="submit">
-              Subscribe Now
+              {{ $t("subscribe_now") }}
             </button>
           </form>
         </div>
 
         <!-- Company -->
         <div class="col-md-2 mb-4">
-          <h5 class="footer-title">Company</h5>
+          <h5 class="footer-title"> {{ $t("company") }}</h5>
           <ul class="footer-links">
-            <li><router-link to="/faq">FAQ's</router-link></li>
-            <li><router-link to="/contact">Careers</router-link></li>
-            <li><router-link to="/about">About Us</router-link></li>
-            <li><router-link to="/contact">Contact Us</router-link></li>
-            <li><router-link to="/all-posts">Blog</router-link></li>
+            <li><router-link to="/faq">{{ $t("faq") }}</router-link></li>
+            <li><router-link to="/contact">{{ $t("careers") }}</router-link></li>
+            <li><router-link to="/about">{{ $t("about_us") }}</router-link></li>
+            <li><router-link to="/contact">{{ $t("contact_us") }}</router-link></li>
+            <li><router-link to="/all-posts">{{ $t("blog") }}</router-link></li>
           </ul>
         </div>
 
         <!-- Quick Links -->
         <div class="col-md-2 mb-4">
-          <h5 class="footer-title">Quick Links</h5>
+          <h5 class="footer-title"> {{ $t("quick_links") }}</h5>
           <ul class="footer-links">
-            <li><router-link to="/about">Discussion</router-link></li>
-            <li><router-link to="/contact">Support</router-link></li>
-            <li><router-link to="/privacy">Privacy Policy</router-link></li>
-            <li><router-link to="/contact">Customer Support</router-link></li>
-            <li><router-link to="/terms">Terms & Conditions</router-link></li>
+            <li><router-link to="/about">{{ $t("discussion") }}</router-link></li>
+            <li><router-link to="/contact">{{ $t("support") }}</router-link></li>
+            <li><router-link to="/privacy">{{ $t("privacy_policy") }}</router-link></li>
+            <li><router-link to="/contact">{{ $t("customer_support") }}</router-link></li>
+            <li><router-link to="/terms">{{ $t("terms_conditions") }}</router-link></li>
           </ul>
         </div>
 
         <!-- Category -->
         <div class="col-md-2 mb-4">
-          <h5 class="footer-title">Category</h5>
+          <h5 class="footer-title"> {{ $t("categories") }}</h5>
           <ul class="footer-links">
             <li><router-link to="/category/design">Design</router-link></li>
             <li><router-link to="/category/drupal">Drupal</router-link></li>
@@ -80,6 +80,7 @@
               <router-link to="/category/javascript">Javascript</router-link>
             </li>
             <li><router-link to="/category/joomla">Joomla</router-link></li>
+
             <li><router-link to="/category/magento">Magento</router-link></li>
             <li>
               <router-link to="/category/wordpress">Wordpress</router-link>
@@ -90,10 +91,7 @@
     </div>
 
     <div class="footer-bottom text-center py-3">
-      <p class="mb-0">
-        © 2023 Bunzo Made with <span class="text-danger">❤</span> by
-        Codecarnival
-      </p>
+      {{ $t("footer_rights") }}
     </div>
   </footer>
 </template>

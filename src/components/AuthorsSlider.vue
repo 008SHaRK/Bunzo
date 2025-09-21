@@ -5,7 +5,9 @@
       v-if="layout === 'slider'"
       class="section-header d-flex justify-content-between align-items-center py-3 mb-4"
     >
-      <h4 class="fw-bold mb-0">From Author's</h4>
+      <h4 class="fw-bold mb-0">
+        {{ $t("authors") }}
+      </h4>
       <div>
         <button
           class="btn btn-light me-2"
@@ -48,21 +50,23 @@
           <!-- Məlumat -->
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
-              <span class="badge category-badge me-2">{{ item.tag }}</span>
+              <span class="badge category-badge me-2">{{ $t(item.tag) }}</span>
               <small class="text-muted">By admin</small>
             </div>
             <h6 class="card-title mt-1">
               <router-link :to="`/post/${item.id}`">
-                {{ item.title }}
+                {{ $t(item.title) }}
               </router-link>
             </h6>
             <p class="text-muted small mb-0">
-              📅 {{ item.date }} • ⏱ {{ item.readTime }} min read
+              📅 {{ $t(item.date) }} • ⏱ {{ item.readTime }} {{ $t("time") }}
             </p>
           </div>
         </div>
       </div>
     </transition-group>
+
+
   </div>
 </template>
 
@@ -83,14 +87,14 @@ export default {
       currentPage: 1,
       itemsPerPage: 4,
       items: [
-        { id: 1, title: "Create beautiful designs", tag: "Javascript", image: img1, date: "12 Apr, 2022", readTime: 3 },
-        { id: 2, title: "WooLentor powerful plugin", tag: "Wordpress", image: img2, date: "12 Apr, 2022", readTime: 3 },
-        { id: 3, title: "Design best practices", tag: "Design", image: img1, date: "13 Apr, 2022", readTime: 4 },
-        { id: 4, title: "Drupal modules you need", tag: "Drupal", image: img2, date: "14 Apr, 2022", readTime: 2 },
-        { id: 5, title: "Next.js vs Vue.js", tag: "Javascript", image: img1, date: "15 Apr, 2022", readTime: 5 },
-        { id: 6, title: "Modern UI trends", tag: "Design", image: img2, date: "16 Apr, 2022", readTime: 3 },
-        { id: 7, title: "SEO for developers", tag: "SEO", image: img1, date: "17 Apr, 2022", readTime: 4 },
-        { id: 8, title: "Headless CMS explained", tag: "CMS", image: img2, date: "18 Apr, 2022", readTime: 2 },
+        { id: 1, title: "posts.title1", tag: "tags.javascript", image: img1, date: "dates.apr12", readTime: 3 },
+        { id: 2, title: "posts.title2", tag: "tags.wordpress", image: img2, date: "dates.apr12", readTime: 3 },
+        { id: 3, title: "posts.title3", tag: "tags.design", image: img1, date: "dates.apr13", readTime: 4 },
+        { id: 4, title: "posts.title4", tag: "tags.drupal", image: img2, date: "dates.apr14", readTime: 2 },
+        { id: 5, title: "posts.title5", tag: "tags.javascript", image: img1, date: "dates.apr15", readTime: 5 },
+        { id: 6, title: "posts.title6", tag: "tags.design", image: img2, date: "dates.apr16", readTime: 3 },
+        { id: 7, title: "posts.title7", tag: "tags.seo", image: img1, date: "dates.apr17", readTime: 4 },
+        { id: 8, title: "posts.title8", tag: "tags.cms", image: img2, date: "dates.apr18", readTime: 2 }
       ],
     };
   },
@@ -117,6 +121,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .article-card {
   background: #f9f9f9;
@@ -124,7 +129,6 @@ export default {
   border-radius: 12px;
 }
 
-/* Normal şəkil (Home slider) */
 .img-wrapper {
   width: 100%;
   height: 200px;
@@ -132,13 +136,12 @@ export default {
   border-radius: 10px;
 }
 
-/* Blog grid üçün kiçik şəkil */
 .img-wrapper.small-img {
   height: 150px;
 }
 .img-wrapper.small-img img {
   height: 150px;
-  object-fit: cov
+  object-fit: cover;
 }
 
 .img-wrapper img {
@@ -151,7 +154,6 @@ export default {
   transform: scale(1.1);
 }
 
-/* Text hissəsinə toxunmuruq */
 .card-title a {
   text-decoration: none;
   color: #000;
@@ -173,7 +175,6 @@ export default {
   color: #fff;
 }
 
-/* animasiya */
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.5s ease;

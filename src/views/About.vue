@@ -9,7 +9,7 @@
           class="tab-link"
           :class="{ active: $route.path === '/' }"
         >
-          Home
+          {{ $t("home") }}
           <span v-if="$route.path === '/'" class="dot">●</span>
         </RouterLink>
 
@@ -19,7 +19,7 @@
           class="tab-link"
           :class="{ active: $route.path === '/about' }"
         >
-          About
+          {{ $t("about") }}
           <span v-if="$route.path === '/about'" class="dot">●</span>
         </RouterLink>
       </div>
@@ -34,7 +34,7 @@
             <div class="icon-box mb-3">
               <i class="bi bi-diagram-3-fill fs-2 text-white"></i>
             </div>
-            <h5 class="fw-bold">Open Platform</h5>
+            <h5 class="fw-bold">{{ $t("openPlatform") }}</h5>
             <p class="text-muted">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry has been the industry's standard dummy text ever since
@@ -53,7 +53,7 @@
             <div class="icon-box mb-3">
               <i class="bi bi-person-video3 fs-2 text-white"></i>
             </div>
-            <h5 class="fw-bold">Digital Publishing</h5>
+            <h5 class="fw-bold">{{ $t("digitalPublishing") }}</h5>
             <p class="text-muted">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry has been the industry's standard dummy text ever since
@@ -83,7 +83,7 @@
               to="/contact"
               class="btn btn-primary position-absolute share-btn"
             >
-              Share your thinking →
+                 {{ $t("share") }}
             </RouterLink>
           </div>
         </div>
@@ -92,18 +92,18 @@
         <div class="row align-items-center">
           <!-- Sol tərəf: Başlıq -->
           <div class="col-md-6 mb-4 mb-md-0">
-            <h1 class="main-title">
-              You Can <strong>Read</strong><br />
-              And <strong>Write</strong> With<br />
-              Bunzo.
-            </h1>
+             <h1 class="main-title">
+            {{ $t("youCan") }} <strong>{{ $t("read") }}</strong><br />
+            {{ $t("and") }} <strong>{{ $t("write") }}</strong> {{ $t("with") }}<br />
+            Bunzo.
+          </h1>
           </div>
 
           <!-- Sağ tərəf: Kartlar -->
           <div class="col-md-6">
             <!-- 1-ci kart -->
             <div class="card p-4 border-0 border-bottom rounded-0">
-              <h5 class="fw-bold mb-2">Digital Publishing</h5>
+              <h5 class="fw-bold mb-2">{{ $t("digitalPublishing") }}</h5>
               <p class="text-muted mb-0">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy
@@ -115,7 +115,7 @@
 
             <!-- 2-ci kart -->
             <div class="card p-4 border-0 rounded-0">
-              <h5 class="fw-bold mb-2">Digital Publishing</h5>
+              <h5 class="fw-bold mb-2">{{ $t("digitalPublishing") }}</h5>
               <p class="text-muted mb-0">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
                 industry. Lorem Ipsum has been the industry's standard dummy

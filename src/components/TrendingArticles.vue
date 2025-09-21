@@ -3,7 +3,7 @@
     <h2 class="mb-4">Trending Articles</h2>
     <div class="row gy-4">
       <div 
-        v-for="(post, index) in posts" 
+        v-for="post in posts" 
         :key="post.id" 
         class="col-md-6"
       >
@@ -18,12 +18,14 @@
           <!-- Məqalə məlumatı -->
           <div class="card-body">
             <div class="d-flex align-items-center mb-2 flex-wrap">
-              <span class="badge bg-light text-dark me-2">{{ post.tag }}</span>
+              <span class="badge bg-light text-dark me-2">
+                {{ $t(`tags.${post.tag}`) }}
+              </span>
               <small class="text-muted">
-                <i class="bi bi-calendar-event me-1"></i> {{ post.date }}
+                <i class="bi bi-calendar-event me-1"></i> {{ $t(`dates.${post.date}`) }}
               </small>
             </div>
-            <h5 class="card-title">{{ post.title }}</h5>
+            <h5 class="card-title">{{ $t(`posts.${post.title}`) }}</h5>
           </div>
         </router-link>
       </div>
@@ -40,12 +42,12 @@ export default {
   data() {
     return {
       posts: [
-        { id: 1, image: img1, tag: "Javascript", title: "The best website template layout for your business", date: "12 Apr, 2022" },
-        { id: 2, image: img2, tag: "Joomla", title: "With WooLentor’s drag and drop interface for creating c...", date: "30 Mar, 2022" },
-        { id: 3, image: img1, tag: "Design", title: "Create a custom checkout page in minutes and increase y...", date: "09 Apr, 2022" },
-        { id: 4, image: img2, tag: "Design", title: "Customize your WooCommerce store with countless design ...", date: "29 Mar, 2022" },
-        { id: 5, image: img1, tag: "Wordpress", title: "WooLentor is a powerful WP plugin for WooCommerce site", date: "12 Apr, 2022" },
-        { id: 6, image: img2, tag: "Wordpress", title: "WooCommerce comes with an intuitive drag-and-drop inter...", date: "12 Apr, 2022" },
+        { id: 1, image: img1, tag: "javascript", title: "title1", date: "apr12" },
+        { id: 2, image: img2, tag: "drupal", title: "title2", date: "apr13" },
+        { id: 3, image: img1, tag: "design", title: "title3", date: "apr14" },
+        { id: 4, image: img2, tag: "design", title: "title4", date: "apr15" },
+        { id: 5, image: img1, tag: "wordpress", title: "title5", date: "apr16" },
+        { id: 6, image: img2, tag: "wordpress", title: "title6", date: "apr17" },
       ],
     };
   },

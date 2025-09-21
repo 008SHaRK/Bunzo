@@ -8,9 +8,10 @@
       Pages
     </a>
     <ul class="dropdown-menu" :class="{ show: isDropdownOpen }">
-      <li><router-link class="dropdown-item" to="/faq">FAQ</router-link></li>
-      <li><router-link class="dropdown-item" to="/privacy-policy">Privacy Policy</router-link></li>
-      <li><router-link class="dropdown-item" to="/terms">Terms & Conditions</router-link></li>
+      <li><router-link class="dropdown-item" to="/faq">{{ $t("customer_support") }}</router-link></li>
+      <li><router-link class="dropdown-item" to="/privacy-policy">{{ $t("privacy_policy") }}</router-link></li>
+      <li><router-link class="dropdown-item" to="/terms">{{ $t("terms_conditions") }}</router-link></li>
+   
     </ul>
   </li>
 </template>

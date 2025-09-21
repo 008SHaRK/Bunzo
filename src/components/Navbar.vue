@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
+  <nav
+    class="navbar navbar-expand-lg custom-navbar shadow-sm"
+    :class="{ scrolled: isScrolled }"
+  >
     <div class="container">
       <!-- Mobile toggle -->
       <button
@@ -81,6 +84,7 @@
 
         <!-- Right side -->
         <div class="d-flex align-items-center ms-auto mt-3 mt-lg-0">
+          <!-- Language switch -->
           <select
             v-model="$i18n.locale"
             class="form-select form-select-sm me-3"
@@ -90,6 +94,7 @@
             <option value="en">EN</option>
           </select>
 
+          <!-- User actions -->
           <template v-if="!user">
             <button class="btn btn-primary btn-sm me-2" @click="openRegister">
               {{ $t("register") }}
@@ -100,7 +105,9 @@
           </template>
 
           <template v-else>
-            <span class="fw-semibold me-2">Salam, {{ user.name }}</span>
+            <span class="fw-semibold me-2">
+              {{ $t("Salam") }} {{ user.name }}
+            </span>
             <button class="btn btn-danger btn-sm" @click="logout">
               Logout
             </button>
@@ -109,7 +116,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal (login/register) -->
     <div
       class="modal fade"
       :class="{ show: showModal }"
@@ -162,7 +169,7 @@
               </button>
             </form>
 
-            <!-- Modern alert for errors -->
+            <!-- Modern alert -->
             <div
               v-if="errorMessage"
               class="alert alert-danger mt-3"
@@ -191,13 +198,15 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from "vue";
+import { reactive, ref, onMounted, onUnmounted } from "vue";
 
 const isNavCollapsed = ref(true);
 const showModal = ref(false);
 const isRegister = ref(true);
 const user = ref(null);
 const errorMessage = ref("");
+const isScrolled = ref(false);
+
 const form = reactive({ name: "", email: "", password: "" });
 
 const mainLinks = [
@@ -230,10 +239,10 @@ function openDropdown(key) {
 function closeDropdown(key) {
   dropdowns[key] = false;
 }
-
 function closeNav() {
   isNavCollapsed.value = true;
 }
+
 function openRegister() {
   isRegister.value = true;
   resetForm();
@@ -266,7 +275,6 @@ function submitForm() {
       password: form.password,
     };
     localStorage.setItem("user", JSON.stringify(newUser));
-    errorMessage.value = "";
     alert("Qeydiyyat tamamlandı! İndi login olun.");
     toggleForm();
   } else {
@@ -296,14 +304,34 @@ onMounted(() => {
   if (savedUser) {
     user.value = { name: savedUser.name };
   }
+  // scroll effekti üçün
+  window.addEventListener("scroll", handleScroll);
 });
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+
+function handleScroll() {
+  isScrolled.value = window.scrollY > 50;
+}
 </script>
 
 <style scoped>
 .custom-navbar {
-  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+  background: transparent;
+  padding: 0.8rem 1rem;
   transition: all 0.3s ease;
 }
+.custom-navbar.scrolled {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 1rem;
+}
+
 .navbar-nav .nav-link {
   color: #333 !important;
   transition: color 0.3s;
@@ -311,6 +339,8 @@ onMounted(() => {
 .navbar-nav .nav-link:hover {
   color: #5900ff !important;
 }
+
+/* Dropdown */
 .category-dropdown {
   display: none;
   opacity: 0;
@@ -330,13 +360,15 @@ onMounted(() => {
 .category-dropdown .dropdown-item {
   padding: 0.5rem 1.2rem;
   color: #333;
-  transition: all 0.25s;
   border-radius: 6px;
+  transition: all 0.25s;
 }
 .category-dropdown .dropdown-item:hover {
   background: linear-gradient(90deg, #5900ff, #9b00ff);
   color: #fff;
 }
+
+/* Modal */
 .modal-content {
   border-radius: 12px;
 }
