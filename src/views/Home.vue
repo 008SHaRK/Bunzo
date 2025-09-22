@@ -1,33 +1,44 @@
 <template>
   <div class="container blog-layout">
- <div class="row gx-3">
-  <!-- Sidebar -->
- <div class="col-12 col-md-3 mb-4 mb-md-0">
-  <SidebarCategory :categories="categories.slice(0,4)" />
-</div>
-  <!-- Bloglar -->
-  <div class="col-12 col-md-9">
-    <div class="post-list d-flex flex-column gap-3">
-      <BlogCard
-        v-for="post in paginatedPosts"
-        :key="post.link"
-        :post="post"
-      />
+    <div class="row gx-3">
+      <!-- Sidebar -->
+      <div class="col-12 col-md-3 mb-4 mb-md-0">
+        <SidebarCategory
+          :categories="categories.map(c => ({
+            ...c,
+            title: $t(`tags.${c.title.toLowerCase()}`)
+          }))"
+        />
+      </div>
+
+      <!-- Bloglar -->
+      <div class="col-12 col-md-9">
+        <div class="post-list d-flex flex-column gap-3">
+          <BlogCard
+            v-for="post in paginatedPosts"
+            :key="post.id"
+            :post="{
+              ...post,
+              title: $t(`title${post.id}`),
+              tag: $t(`tags.${post.tag.toLowerCase()}`),
+              date: $t(`dates.${post.dateKey}`)
+            }"
+          />
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
     <!-- Aşağıdakı komponentlər -->
-    <TrendingArticles />
-    <AuthorsSlider />
-    <TrendingTopic />
+    <TrendingArticles :title="$t('trend')" />
+    <AuthorsSlider :title="$t('authors')" />
+    <TrendingTopic :title="$t('trend')" />
 
     <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
-      <h3 class="mb-0 featured-title">Featured Video</h3>
-      <a href="#" class="see-more d-flex align-items-center">
-        <span>See more</span>
+      <h3 class="mb-0 featured-title">{{ $t("featured_video") }}</h3>
+      <router-link to="/all-posts" class="see-more d-flex align-items-center">
+        <span>{{ $t("see_more") }}</span>
         <i class="bi bi-arrow-right ms-2"></i>
-      </a>
+      </router-link>
     </div>
 
     <FeaturedVideo />
@@ -47,7 +58,14 @@ import img2 from "@/assets/img/2-1.jpg";
 
 export default {
   name: "Home",
-  components: { SidebarCategory, BlogCard, AuthorsSlider, TrendingArticles, TrendingTopic, FeaturedVideo },
+  components: {
+    SidebarCategory,
+    BlogCard,
+    AuthorsSlider,
+    TrendingArticles,
+    TrendingTopic,
+    FeaturedVideo
+  },
   data() {
     return {
       categories: [
@@ -56,49 +74,46 @@ export default {
         { title: "Javascript", image: img1, link: "/category/javascript" },
         { title: "Joomla", image: img2, link: "/category/joomla" },
       ],
-     posts: [
-  {
-    id: 1,
-    title: "The best website template layout for your business",
-    excerpt: "You need to be sure there isn’t anything embarrassing hidden in the middle of text",
-    image: img1,
-    tag: "Javascript",
-    author: "Uzzal Hossain",
-    date: "12 Apr, 2022",
-    readTime: 3,
-  },
-  {
-    id: 2,
-    title: "Make your store stand out from the others",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-    image: img2,
-    tag: "Magento",
-    author: "Uzzal Hossain",
-    date: "12 Apr, 2022",
-    readTime: 3,
-  },
-  {
-    id: 3,
-    title: "Third post",
-    excerpt: "Third post excerpt",
-    image: img1,
-    tag: "Design",
-    author: "Uzzal Hossain",
-    date: "13 Apr, 2022",
-    readTime: 2,
-  },
-  {
-    id: 4,
-    title: "Fourth post",
-    excerpt: "Fourth post excerpt",
-    image: img2,
-    tag: "Drupal",
-    author: "Uzzal Hossain",
-    date: "14 Apr, 2022",
-    readTime: 4,
-  },
-],
-      // Daha çox yazı əlavə edin...
+      posts: [
+        {
+          id: 1,
+          excerpt:
+            "You need to be sure there isn’t anything embarrassing hidden in the middle of text",
+          image: img1,
+          tag: "javascript",
+          author: "Uzzal Hossain",
+          dateKey: "apr12",
+          readTime: 3,
+        },
+        {
+          id: 2,
+          excerpt:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+          image: img2,
+          tag: "drupal",
+          author: "Uzzal Hossain",
+          dateKey: "apr13",
+          readTime: 3,
+        },
+        {
+          id: 3,
+          excerpt: "Third post excerpt",
+          image: img1,
+          tag: "design",
+          author: "Uzzal Hossain",
+          dateKey: "apr14",
+          readTime: 2,
+        },
+        {
+          id: 4,
+          excerpt: "Fourth post excerpt",
+          image: img2,
+          tag: "drupal",
+          author: "Uzzal Hossain",
+          dateKey: "apr15",
+          readTime: 4,
+        },
+      ],
       currentPage: 1,
       postsPerPage: 2,
     };
@@ -122,6 +137,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .blog-layout {

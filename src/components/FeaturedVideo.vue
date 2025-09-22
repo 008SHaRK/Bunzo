@@ -13,24 +13,19 @@
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
               <span class="badge category-badge me-2">{{ item.tag }}</span>
-              <small class="text-muted">By admin</small>
+              <small class="text-muted">{{ $t("by") }} admin</small>
             </div>
             <h6 class="card-title mt-1">
-              <a :href="item.link">{{ item.title }}</a>
+              <a :href="item.link">{{ $t(item.titleKey) }}</a>
             </h6>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            </p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
             <p class="text-muted small mb-0">
-              📅 {{ item.date }} • ⏱ {{ item.readTime }} min read
+              📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}
             </p>
           </div>
         </div>
       </div>
     </transition-group>
-
-    <!-- Slider üçün navigation düymələri -->
-    
   </div>
 </template>
 
@@ -41,27 +36,85 @@ import img2 from "@/assets/img/2-1.jpg";
 export default {
   name: "AuthorsSlider",
   props: {
-    layout: {
-      type: String,
-      default: "slider", // "slider" və ya "grid"
-    },
-    itemsPerPage: {
-      type: Number,
-      default: 4,
-    },
+    layout: { type: String, default: "slider" },
+    itemsPerPage: { type: Number, default: 4 },
   },
   data() {
     return {
       currentPage: 1,
       items: [
-        { id: 1, title: "Create beautiful designs...", tag: "Javascript", image: img1, date: "12 Apr, 2022", readTime: 3, link: "/post/1" },
-        { id: 2, title: "WooLentor powerful WP plugin...", tag: "Wordpress", image: img2, date: "12 Apr, 2022", readTime: 3, link: "/post/2" },
-        { id: 3, title: "Design best practices you should know", tag: "Design", image: img1, date: "13 Apr, 2022", readTime: 4, link: "/post/3" },
-        { id: 4, title: "Drupal modules you need in 2025", tag: "Drupal", image: img2, date: "14 Apr, 2022", readTime: 2, link: "/post/4" },
-        { id: 5, title: "Next.js vs Vue.js which is better?", tag: "Javascript", image: img1, date: "15 Apr, 2022", readTime: 5, link: "/post/5" },
-        { id: 6, title: "Modern UI trends to follow", tag: "Design", image: img2, date: "16 Apr, 2022", readTime: 3, link: "/post/6" },
-        { id: 7, title: "SEO for developers", tag: "SEO", image: img1, date: "17 Apr, 2022", readTime: 4, link: "/post/7" },
-        { id: 8, title: "Headless CMS explained", tag: "CMS", image: img2, date: "18 Apr, 2022", readTime: 2, link: "/post/8" },
+        {
+          id: 1,
+          titleKey: "title1",
+          tag: "Javascript",
+          image: img1,
+          date: "12 Apr, 2022",
+          readTime: 3,
+          link: "/post/1",
+        },
+        {
+          id: 2,
+          titleKey: "title2",
+          tag: "Wordpress",
+          image: img2,
+          date: "12 Apr, 2022",
+          readTime: 3,
+          link: "/post/2",
+        },
+        {
+          id: 3,
+          titleKey: "title3",
+          tag: "Design",
+          image: img1,
+          date: "13 Apr, 2022",
+          readTime: 4,
+          link: "/post/3",
+        },
+        {
+          id: 4,
+          titleKey: "title4",
+          tag: "Drupal",
+          image: img2,
+          date: "14 Apr, 2022",
+          readTime: 2,
+          link: "/post/4",
+        },
+        {
+          id: 5,
+          titleKey: "title5",
+          tag: "Javascript",
+          image: img1,
+          date: "15 Apr, 2022",
+          readTime: 5,
+          link: "/post/5",
+        },
+        {
+          id: 6,
+          titleKey: "title6",
+          tag: "Design",
+          image: img2,
+          date: "16 Apr, 2022",
+          readTime: 3,
+          link: "/post/6",
+        },
+        {
+          id: 7,
+          titleKey: "title7",
+          tag: "SEO",
+          image: img1,
+          date: "17 Apr, 2022",
+          readTime: 4,
+          link: "/post/7",
+        },
+        {
+          id: 8,
+          titleKey: "title8",
+          tag: "CMS",
+          image: img2,
+          date: "18 Apr, 2022",
+          readTime: 2,
+          link: "/post/8",
+        },
       ],
     };
   },
@@ -70,9 +123,7 @@ export default {
       return Math.ceil(this.items.length / this.itemsPerPage);
     },
     paginatedItems() {
-      if (this.layout === "grid") {
-        return this.items; // bütün itemlər göstərilir
-      }
+      if (this.layout === "grid") return this.items;
       const start = (this.currentPage - 1) * this.itemsPerPage;
       return this.items.slice(start, start + this.itemsPerPage);
     },
@@ -152,7 +203,6 @@ export default {
   color: #555;
 }
 
-/* animasiya */
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.5s ease;

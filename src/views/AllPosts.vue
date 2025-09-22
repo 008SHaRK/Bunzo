@@ -8,7 +8,7 @@
           class="tab-link"
           :class="{ active: $route.path === '/' }"
         >
-          Home
+          {{ $t("home") }}
         </RouterLink>
 
         <RouterLink
@@ -19,7 +19,7 @@
             'blog-active': $route.path === '/all-posts',
           }"
         >
-          All Post
+          {{ $t("allpost") }}
           <span v-if="$route.path === '/all-posts'" class="dot">●</span>
         </RouterLink>
       </div>

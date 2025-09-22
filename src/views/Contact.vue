@@ -3,20 +3,22 @@
     <!-- Tabs -->
     <div class="tabs-container mb-4">
       <div class="tabs">
+        <!-- Home -->
         <RouterLink
           to="/"
           class="tab-link"
           :class="{ active: $route.path === '/' }"
         >
-          Home
+          {{ $t("home") }}
         </RouterLink>
 
+        <!-- Contact -->
         <RouterLink
           to="/contact"
           class="tab-link"
           :class="{ active: $route.path === '/contact', 'contact-active': $route.path === '/contact' }"
         >
-          Contact
+          {{ $t("contact") }}
           <span v-if="$route.path === '/contact'" class="dot">●</span>
         </RouterLink>
       </div>
@@ -27,7 +29,7 @@
       <div class="row g-5">
         <!-- Left: Form -->
         <div class="col-md-6">
-          <h2 class="mb-4 fw-bold">Get in Touch</h2>
+          <h2 class="mb-4 fw-bold">{{ $t("contact_us") }}</h2>
           <form @submit.prevent="submitForm" class="contact-form">
             <div class="mb-3">
               <label for="name" class="form-label">Full Name</label>
@@ -36,7 +38,7 @@
                 id="name"
                 v-model="form.name"
                 class="form-control shadow-sm"
-                placeholder="Enter your name"
+                :placeholder="$t('fullName') || 'Enter your name'"
                 required
               />
             </div>
@@ -48,7 +50,7 @@
                 id="email"
                 v-model="form.email"
                 class="form-control shadow-sm"
-                placeholder="Enter your email"
+                :placeholder="$t('email') || 'Enter your email'"
                 required
               />
             </div>
@@ -60,24 +62,24 @@
                 id="phone"
                 v-model="form.phone"
                 class="form-control shadow-sm"
-                placeholder="Enter your phone"
+                :placeholder="$t('phone') || 'Enter your phone'"
               />
             </div>
 
             <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
+              <label for="message" class="form-label">{{ $t("message") || "Message" }}</label>
               <textarea
                 id="message"
                 v-model="form.message"
                 class="form-control shadow-sm"
                 rows="5"
-                placeholder="Write your message"
+                :placeholder="$t('writeMessage') || 'Write your message'"
                 required
               ></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary send-btn">
-              Send Message
+              {{ $t("sendMessage") || "Send Message" }}
               <i class="bi bi-arrow-right ms-2"></i>
             </button>
           </form>
@@ -123,7 +125,7 @@ function submitForm() {
   form.message = "";
 }
 </script>
-
+  
 <style scoped>
 /* Tabs */
 .tabs-container {

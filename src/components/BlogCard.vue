@@ -1,4 +1,3 @@
-<!-- BlogCard.vue -->
 <template>
   <div class="blog-card" @click="goToPost(post.id)">
     <div class="blog-img-wrapper">
@@ -6,14 +5,14 @@
     </div>
     <div class="blog-content">
       <div class="info">
-        <span class="tag">{{ post.tag }}</span>
-        <span class="author">By {{ post.author }}</span>
+        <span class="tag">{{ $t(`tags.${post.tag.toLowerCase()}`) }}</span>
+        <span class="author">{{ $t('by') }} admin</span>
       </div>
-      <h3 class="title">{{ post.title }}</h3>
+      <h3 class="title">{{ $t(post.title) }}</h3>
       <p class="excerpt">{{ post.excerpt }}</p>
       <div class="meta">
-        <span>📅 {{ post.date }}</span>
-        <span>⏱ {{ post.readTime }} min read</span>
+        <span>📅 {{ $t(`dates.${post.dateKey}`) }}</span>
+        <span>⏱ {{ post.readTime }} {{ $t('time') }}</span>
       </div>
     </div>
   </div>
@@ -30,6 +29,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .blog-card {
