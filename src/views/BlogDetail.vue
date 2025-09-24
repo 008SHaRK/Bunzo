@@ -3,9 +3,9 @@
     <!-- Tabs / Breadcrumb -->
     <div class="tabs-container mb-4">
       <div class="tabs">
-        <a href="/" class="tab-link">Home</a>
-        <a href="/all-posts" class="tab-link">Blog</a>
-        <span class="tab-link active">{{ post.title }}</span>
+        <router-link to="/" class="tab-link">{{ $t("home") }}</router-link>
+        <router-link to="/all-posts" class="tab-link">{{ $t("blog") }}</router-link>
+        <span class="tab-link active">{{ $t(post.title) }}</span>
       </div>
     </div>
 
@@ -13,17 +13,17 @@
     <div
       class="post-meta d-flex justify-content-center gap-3 mb-2 flex-wrap text-center"
     >
-      <span>By {{ post.author }}</span>
-      <span>📅 {{ post.date }}</span>
-      <span>⏱ {{ post.readTime }} min read</span>
+      <span>{{ $t("by") }} {{ $t(post.author) }}</span>
+      <span>📅 {{ $t(`dates.${post.date}`) }}</span>
+      <span>⏱ {{ post.readTime }} {{ $t("time") }}</span>
     </div>
 
     <!-- Title -->
-    <h1 class="post-title mb-2 text-center">{{ post.title }}</h1>
+    <h1 class="post-title mb-2 text-center">{{ $t(post.title) }}</h1>
 
     <!-- Tag -->
     <div class="tag-container mb-4">
-      <span class="post-tag">{{ post.tag }}</span>
+      <span class="post-tag">{{ $t(`tags.${post.tag.toLowerCase()}`) }}</span>
     </div>
 
     <!-- Image -->
@@ -40,7 +40,7 @@
 
     <!-- Share Buttons -->
     <div class="share-container mt-4">
-      <span class="share-title">Share this article:</span>
+      <span class="share-title">{{ $t("share") }}:</span>
       <div class="share-buttons">
         <a
           v-for="(item, index) in socials"
@@ -55,7 +55,7 @@
     </div>
 
     <!-- CKEditor -->
-   <CommentBox />
+    <CommentBox />
   </div>
 
   <div v-else class="container my-5 text-center">
@@ -68,8 +68,7 @@ import img1 from "@/assets/img/1-2.jpg";
 import img2 from "@/assets/img/2-1.jpg";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-vue";
-import CommentBox from '@/components/CommentBox.vue'
-
+import CommentBox from "@/components/CommentBox.vue";
 
 export default {
   name: "BlogDetail",
@@ -83,23 +82,23 @@ export default {
       posts: [
         {
           id: 1,
-          title: "The best website template layout",
+          title: "title1", // i18n açarı
           content: "<p>Full post content here...</p>",
-          tag: "Javascript",
+          tag: "javascript",
           image: img1,
-          author: "Uzzal Hossain",
-          date: "12 Apr, 2022",
+          author: "authors", // i18n açarı
+          date: "apr12", // i18n dates içində açar
           readTime: 3,
         },
         {
           id: 2,
-          title: "Make your store stand out",
+          title: "title2",
           content: "<p>Full post content here...</p>",
-          tag: "Magento",
+          tag: "magento",
           image: img2,
-          author: "Uzzal Hossain",
-          date: "12 Apr, 2022",
-          readTime: 3,
+          author: "authors",
+          date: "apr13",
+          readTime: 5,
         },
       ],
 

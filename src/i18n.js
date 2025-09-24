@@ -51,6 +51,7 @@ const messages = {
       design: "Dizayn",
       joomla: "Joomla",
       magento: "Magento",
+      wordpress: "WordPress"
     },
 
     // FAQ üçün sual və cavablar
@@ -72,6 +73,8 @@ const messages = {
       apr13: "13 Aprel 2025",
       apr14: "14 Aprel 2025",
       apr15: "15 Aprel 2025",
+      apr16: "16 Aprel 2025",
+      apr17: "17 Aprel 2025",
     },
 
     // Slider / post titles
@@ -157,6 +160,8 @@ const messages = {
       apr13: "Apr 13, 2025",
       apr14: "Apr 14, 2025",
       apr15: "Apr 15, 2025",
+      apr16: "Apr 16, 2025",
+      apr17: "Apr 17, 2025",
     },
 
     // Slider / post titles

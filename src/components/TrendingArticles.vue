@@ -2,14 +2,10 @@
   <div class="container py-5">
     <h2 class="mb-4">Trending Articles</h2>
     <div class="row gy-4">
-      <div 
-        v-for="post in posts" 
-        :key="post.id" 
-        class="col-md-6"
-      >
+      <div v-for="post in posts" :key="post.id" class="col-md-6">
         <!-- Router link ilə card -->
-        <router-link 
-          :to="`/post/${post.id}`" 
+        <router-link
+          :to="`/post/${post.id}`"
           class="trending-card text-decoration-none text-dark"
         >
           <!-- Şəkil -->
@@ -18,14 +14,21 @@
           <!-- Məqalə məlumatı -->
           <div class="card-body">
             <div class="d-flex align-items-center mb-2 flex-wrap">
+              <!-- Tag -->
               <span class="badge bg-light text-dark me-2">
                 {{ $t(`tags.${post.tag}`) }}
               </span>
+              <!-- Tarix -->
               <small class="text-muted">
-                <i class="bi bi-calendar-event me-1"></i> {{ $t(`dates.${post.date}`) }}
+                📅 {{ $t(`dates.${post.date}`) }}
               </small>
             </div>
-            <h5 class="card-title">{{ $t(`posts.${post.title}`) }}</h5>
+            <!-- Başlıq -->
+            <h5 class="card-title">{{ $t(post.title) }}</h5>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
+              nihil.
+            </p>
           </div>
         </router-link>
       </div>
@@ -42,12 +45,30 @@ export default {
   data() {
     return {
       posts: [
-        { id: 1, image: img1, tag: "javascript", title: "title1", date: "apr12" },
+        {
+          id: 1,
+          image: img1,
+          tag: "javascript",
+          title: "title1",
+          date: "apr12",
+        },
         { id: 2, image: img2, tag: "drupal", title: "title2", date: "apr13" },
         { id: 3, image: img1, tag: "design", title: "title3", date: "apr14" },
         { id: 4, image: img2, tag: "design", title: "title4", date: "apr15" },
-        { id: 5, image: img1, tag: "wordpress", title: "title5", date: "apr16" },
-        { id: 6, image: img2, tag: "wordpress", title: "title6", date: "apr17" },
+        {
+          id: 5,
+          image: img1,
+          tag: "wordpress",
+          title: "title5",
+          date: "apr16",
+        },
+        {
+          id: 6,
+          image: img2,
+          tag: "wordpress",
+          title: "title6",
+          date: "apr17",
+        },
       ],
     };
   },
@@ -61,12 +82,12 @@ export default {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
 
 .trending-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Şəkil */
