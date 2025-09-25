@@ -181,13 +181,15 @@ export default {
   border-radius: 8px;
   font-size: 0.75rem;
   font-weight: 500;
-}
-.category-badge:hover {
-  background: #007bff;
-  color: #fff;
-  cursor: pointer;
+    transition: all 0.3s;
 }
 
+
+
+.card-body .badge:hover {
+  background-color: #007bff !important;
+  color: #fff !important;
+}
 .card-title a {
   text-decoration: none;
   color: #222;

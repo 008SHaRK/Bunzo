@@ -10,10 +10,10 @@
       </div>
       <h3 class="title">{{ $t(`${post.title}`) }}</h3>
       <p class="excerpt">{{ $t(`excerpts.${post.excerpt}`) }}</p>
-    <div class="meta">
-  <span>📅 {{ $t(`${post.date}`) }}</span>
-  <span>⏱ {{ post.readTime }} {{ $t('time') }}</span>
-</div>
+      <div class="meta">
+        <span>📅 {{ $t(`${post.date}`) }}</span>
+        <span>⏱ {{ post.readTime }} {{ $t("time") }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +38,11 @@ export default {
   transition: transform 0.3s ease;
   flex-wrap: wrap;
 }
+
+.blog-card:hover {
+  transform: scale(1.02);
+}
+
 .blog-img-wrapper {
   width: 100%;
   max-width: 530px;
@@ -47,6 +52,7 @@ export default {
   border-radius: 12px;
   position: relative;
 }
+
 .blog-img {
   width: 100%;
   height: 100%;
@@ -54,10 +60,12 @@ export default {
   display: block;
   transition: transform 0.4s ease, opacity 0.4s ease;
 }
+
 .blog-card:hover .blog-img {
   transform: scale(1.08);
   opacity: 0.95;
 }
+
 .blog-content {
   display: flex;
   flex-direction: column;
@@ -65,36 +73,49 @@ export default {
   flex: 1;
   max-width: 500px;
 }
-.tag {
-  background: #f0f0f0;
-  padding: 2px 8px;
-  border-radius: 6px;
-  margin-bottom: 6px;
-  font-size: 14px;
-}
+
 .info {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   font-size: 14px;
   color: #777;
   margin-bottom: 6px;
+  flex-wrap: wrap;
 }
+
 .author {
   font-size: 13px;
-margin-left: 5px;
-margin-top: 5px;
-  text-align: center;
+  margin-left: 5px;
+  margin-top: 0;
+  text-align: left;
 }
+
+.tag {
+  background: #f1f1f1;
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: #007bff;
+  color: #fff;
+}
+
 .title {
   font-size: 20px;
   font-weight: bold;
   margin: 6px 0;
 }
+
 .excerpt {
   font-size: 15px;
   color: #555;
   margin-bottom: 10px;
 }
+
 .meta {
   font-size: 14px;
   color: #777;
@@ -102,26 +123,13 @@ margin-top: 5px;
   gap: 15px;
 }
 
-.author:hover {
-  background-color: #5138ee;
-  color: #f0f0f0;
-  border-radius: 30px;
-  width: 90px;
-  text-align: center;
-}
-.tag:hover{
-  background-color: #5138ee;
-  color: #f0f0f0;
-  border-radius: 30px;
-}
-
-
-
 .title:hover,
 .excerpt:hover,
 .meta span:hover {
-  color: #5138ee;
+  color: #007bff;
 }
+
+/* RESPONSIVE */
 @media (max-width: 992px) {
   .blog-card {
     flex-direction: column;
@@ -135,11 +143,13 @@ margin-top: 5px;
     max-width: 100%;
   }
 }
+
 @media (max-width: 768px) {
   .blog-img-wrapper {
     height: 200px;
   }
 }
+
 @media (max-width: 480px) {
   .blog-img-wrapper {
     height: 180px;
@@ -152,6 +162,9 @@ margin-top: 5px;
   }
   .meta span {
     font-size: 12px;
+  }
+  .info {
+    justify-content: flex-start;
   }
 }
 </style>

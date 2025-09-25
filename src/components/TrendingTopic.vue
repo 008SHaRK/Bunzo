@@ -1,27 +1,30 @@
 <template>
   <section class="trending-topic">
     <div class="container">
-      <!-- Başlıq və şəkillər eyni sırada -->
       <div class="header-row">
         <div class="left-side">
-          <h3 class="title">  {{ $t("trend") }}</h3>
+          <h3 class="title">{{ $t("trend") }}</h3>
           <div class="controls">
-            <button class="nav-btn" @click="prevSlide"><i class="bi bi-arrow-left-short"></i></button>
-            <button class="nav-btn" @click="nextSlide"><i class="bi bi-arrow-right-short"></i></button>
+            <button class="nav-btn" @click="prevSlide">
+              <i class="bi bi-arrow-left-short"></i>
+            </button>
+            <button class="nav-btn" @click="nextSlide">
+              <i class="bi bi-arrow-right-short"></i>
+            </button>
           </div>
         </div>
 
-        <!-- Şəkillər -->
         <div class="slider">
           <div
             class="slider-track"
             :style="{
               transform:
                 'translateX(-' + currentIndex * (cardWidth + gap) + 'px)',
+              transition: noTransition ? 'none' : 'transform 0.6s ease'
             }"
           >
             <div
-              v-for="(item, index) in items"
+              v-for="(item, index) in duplicatedItems"
               :key="index"
               class="card"
               :style="{ backgroundImage: 'url(' + item.image + ')' }"
@@ -38,12 +41,12 @@
 </template>
 
 <script>
-import designImg from '@/assets/img/1-2.jpg';
-import drupalImg from '@/assets/img/2-1.jpg';
-import jsImg from '@/assets/img/14-1.jpg';
-import joomlaImg from '@/assets/img/13.jpg';
-import magentoImg from '@/assets/img/16.jpg';
-import wpImg from '@/assets/img/6-1.jpg';
+import designImg from "@/assets/img/1-2.jpg";
+import drupalImg from "@/assets/img/2-1.jpg";
+import jsImg from "@/assets/img/14-1.jpg";
+import joomlaImg from "@/assets/img/13.jpg";
+import magentoImg from "@/assets/img/16.jpg";
+import wpImg from "@/assets/img/6-1.jpg";
 
 export default {
   name: "TrendingTopic",
@@ -52,6 +55,8 @@ export default {
       currentIndex: 0,
       cardWidth: 220,
       gap: 20,
+      noTransition: false,
+      autoPlayInterval: null,
       items: [
         { title: "Design", image: designImg, link: "/category/design" },
         { title: "Drupal", image: drupalImg, link: "/category/drupal" },
@@ -60,26 +65,64 @@ export default {
         { title: "Magento", image: magentoImg, link: "/category/magento" },
         { title: "WordPress", image: wpImg, link: "/category/wordpress" },
       ],
+      repeatCount: 3,
     };
+  },
+  computed: {
+    duplicatedItems() {
+      let arr = [];
+      for (let i = 0; i < this.repeatCount; i++) {
+        arr = arr.concat(this.items);
+      }
+      return arr;
+    },
+    totalCards() {
+      return this.items.length * this.repeatCount;
+    },
   },
   methods: {
     nextSlide() {
-      if (this.currentIndex + 4 < this.items.length) {
-        this.currentIndex += 2;
+      this.currentIndex++;
+      // Sonsuz scroll effekti üçün track-ın ortasına qayıt
+      if (this.currentIndex >= this.items.length * (this.repeatCount - 1)) {
+        setTimeout(() => {
+          this.noTransition = true;
+          this.currentIndex = this.items.length * (this.repeatCount / 2 - 1);
+          this.$nextTick(() => (this.noTransition = false));
+        }, 600);
       }
     },
     prevSlide() {
-      if (this.currentIndex > 0) {
-        this.currentIndex -= 2;
+      this.currentIndex--;
+      if (this.currentIndex < 0) {
+        setTimeout(() => {
+          this.noTransition = true;
+          this.currentIndex = this.items.length * (this.repeatCount / 2);
+          this.$nextTick(() => (this.noTransition = false));
+        }, 600);
       }
     },
     handleClick(item) {
       this.$router.push(item.link);
     },
+    startAutoPlay() {
+      this.autoPlayInterval = setInterval(() => {
+        this.nextSlide();
+      }, 2500);
+    },
+    stopAutoPlay() {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    },
+  },
+  mounted() {
+    this.startAutoPlay();
+  },
+  beforeUnmount() {
+    this.stopAutoPlay();
   },
 };
 </script>
-
 
 <style scoped>
 .trending-topic {
@@ -135,7 +178,6 @@ export default {
 .slider-track {
   display: flex;
   gap: 20px;
-  transition: transform 0.6s ease;
 }
 
 .card {

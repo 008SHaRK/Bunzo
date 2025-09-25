@@ -1,5 +1,6 @@
 <template>
   <div class="authors-slider container my-5">
+    <!-- Header -->
     <div
       v-if="layout === 'slider'"
       class="section-header d-flex justify-content-between align-items-center py-3 mb-4"
@@ -23,31 +24,35 @@
       </div>
     </div>
 
+    <!-- Cards -->
     <transition-group name="fade" tag="div" class="row g-3">
       <div
         v-for="item in displayedItems"
         :key="item.id"
-        :class="layout === 'grid' ? 'col-md-4' : 'col-md-6'"
+        class="col-12 col-sm-6"
       >
         <div class="card h-100 shadow-sm article-card">
-          <router-link
-            :to="`/post/${item.id}`"
-            class="img-wrapper"
-            :class="{ 'small-img': layout === 'grid' }"
-          >
-            <img :src="item.image" class="card-img-top" alt="image" />
+          <router-link :to="`/post/${item.id}`" class="img-wrapper">
+            <img :src="item.image" alt="image" />
           </router-link>
 
-          <div class="card-body">
-            <div class="d-flex align-items-center mb-2">
+          <div class="card-body text-start">
+            <div class="d-flex justify-content-start align-items-center mb-2">
               <span class="badge category-badge me-2">{{ item.tag }}</span>
               <small class="text-muted">{{ $t("by") }} admin</small>
             </div>
-            <h6 class="card-title mt-1">
-              <router-link :to="`/post/${item.id}`">
-                {{ $t(item.titleKey) }}
-              </router-link>
+
+            <h6 class="card-title mb-2">
+              <router-link :to="`/post/${item.id}`">{{
+                $t(item.titleKey)
+              }}</router-link>
             </h6>
+
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat
+              iste, explicabo officia unde possimus reiciendis?
+            </p>
+
             <p class="text-muted small mb-0">
               📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}
             </p>
@@ -64,9 +69,7 @@ import img2 from "@/assets/img/2-1.jpg";
 
 export default {
   name: "AuthorsSlider",
-  props: {
-    layout: { type: String, default: "slider" },
-  },
+  props: { layout: { type: String, default: "slider" } },
   data() {
     return {
       currentPage: 1,
@@ -165,25 +168,22 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .article-card {
   background: #f9f9f9;
   border: none;
   border-radius: 12px;
+  transition: transform 0.3s ease;
 }
+.article-card:hover {
+  transform: scale(1.03);
+}
+
 .img-wrapper {
   width: 100%;
   height: 200px;
   overflow: hidden;
   border-radius: 10px;
-}
-.img-wrapper.small-img {
-  height: 150px;
-}
-.img-wrapper.small-img img {
-  height: 150px;
-  object-fit: cover;
 }
 .img-wrapper img {
   width: 100%;
@@ -194,6 +194,16 @@ export default {
 .img-wrapper img:hover {
   transform: scale(1.1);
 }
+
+.card-body {
+  padding: 15px;
+}
+
+.card-body .d-flex {
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .card-title a {
   text-decoration: none;
   color: #000;
@@ -202,6 +212,12 @@ export default {
 .card-title a:hover {
   color: #007bff;
 }
+
+.card-excerpt {
+  color: #555;
+  font-size: 14px;
+}
+
 .category-badge {
   background: #f1f1f1;
   color: #000;
@@ -214,9 +230,11 @@ export default {
   background: #007bff;
   color: #fff;
 }
+
+/* Fade animation */
 .fade-enter-active,
 .fade-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.6s ease;
 }
 .fade-enter-from {
   opacity: 0;
@@ -225,5 +243,31 @@ export default {
 .fade-leave-to {
   opacity: 0;
   transform: translateX(-30px);
+}
+
+/* 2x2 Grid Responsive */
+.col-sm-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+@media (max-width: 768px) {
+  .col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 480px) {
+  .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* 770px altı tag və by admin solda */
+@media (max-width: 770px) {
+  .card-body .d-flex {
+    justify-content: flex-start !important;
+    text-align: left;
+  }
 }
 </style>

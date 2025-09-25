@@ -108,16 +108,24 @@ export default {
   color: #555;
 }
 
+.card-body .badge {
+  transition: all 0.3s;
+}
+
+.card-body .badge:hover {
+  background-color: #007bff !important;
+  color: #fff !important;
+}
 /* --- RESPONSIVE: 1200px-dən kiçik olanda --- */
 @media (max-width: 1200px) {
   .trending-card {
-    flex-direction: column;   /* Şəkil yuxarı, yazılar altına */
+    flex-direction: column;
     text-align: left;
   }
 
   .card-img {
     width: 100%;
-    height: 220px; /* bir az böyüdülmüş */
+    height: 220px;
   }
 
   .card-body {
@@ -125,4 +133,5 @@ export default {
     padding: 15px;
   }
 }
+
 </style>

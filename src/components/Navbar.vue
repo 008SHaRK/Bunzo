@@ -25,33 +25,33 @@
             >
           </li>
 
-          <!-- Categories Dropdown -->
-          <li
-            class="nav-item dropdown"
-            @mouseenter="openDropdown('categories')"
-            @mouseleave="closeDropdown('categories')"
-          >
-            <a
-              class="nav-link dropdown-toggle px-2"
-              href="#"
-              @click.prevent="toggleDropdown('categories')"
-            >
-              {{ $t("categories") }}
-            </a>
-            <ul
-              class="dropdown-menu category-dropdown"
-              :class="{ show: dropdowns.categories }"
-            >
-              <li v-for="item in categories" :key="item.name">
-                <router-link
-                  class="dropdown-item"
-                  :to="item.to"
-                  @click="closeNav"
-                  >{{ item.name }}</router-link
-                >
-              </li>
-            </ul>
-          </li>
+     <!-- Categories Dropdown -->
+<li
+  class="nav-item dropdown"
+  @mouseenter="openDropdown('categories')"
+  @mouseleave="closeDropdown('categories')"
+>
+  <router-link
+    class="nav-link dropdown-toggle px-2"
+    :to="'/categories'"
+    @click.prevent="toggleDropdown('categories')"
+  >
+    {{ $t("categories") }}
+  </router-link>
+  <ul
+    class="dropdown-menu category-dropdown"
+    :class="{ show: dropdowns.categories }"
+  >
+    <li v-for="item in categories" :key="item.name">
+      <router-link
+        class="dropdown-item"
+        :to="item.to"
+        @click="closeNav"
+        >{{ item.name }}</router-link
+      >
+    </li>
+  </ul>
+</li>
 
           <!-- Pages Dropdown -->
           <li
