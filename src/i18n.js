@@ -10,6 +10,7 @@ const messages = {
     pages: "Səhifələr",
     allpost: "Bütün paylaşımlar",
     login: "Login",
+    terms: "Şərtlər",
     register: "Qeydiyyat",
     "already-have-account": "Artıq hesabınız var?",
     "dont-have-account": "Hesabınız yoxdur?",
@@ -34,7 +35,41 @@ const messages = {
     see_more: "Daha çoxunu gör",
     by: "Tərəfindən",
     no_posts_for: "Bu kateqoriya üçün heç bir paylaşım yoxdur",
+  privacy_policy: "Məxfilik siyasəti",
+    who_we_are: "Biz kimik?",
+    website_address: "Veb sayt ünvanımız: http://hashthemes.com",
+    loading_sections: "Əlavə bölmələr yüklənir…",
+    dynamic_content_note: "Bu məzmun dinamikdir: <code>endpoint</code> prop-u vasitəsilə backend-dən JSON qaytarın.",
+    
+    embedded_title: "Başqa vebsaytlardan daxil edilmiş məzmun",
+    embedded_body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Embedded content (məsələn videolar, xəritələr) başqa vebsaytlardan davranır ki, ziyarətçi həmin vebsayta daxil olubmuş kimi.",
+    
+    retention_title: "Məlumatlarınızı nə qədər saxlayırıq",
+    retention_body: "Şəxsi məlumatları yalnız xidmət göstərmək, hüquqi öhdəlikləri yerinə yetirmək, mübahisələri həll etmək və razılaşmaları tətbiq etmək üçün lazım olduğu müddətcə saxlayırıq.",
+    
+    rights_title: "Məlumatlarınız üzərində hansı hüquqlarınız var",
+    rights_body: "Məlumatlarınıza daxil olmaq, düzəliş etmək, ixrac etmək və silmək hüququnuz var. Müəyyən hallarda emalın qarşısını almaq və ya məhdudlaşdırmaq hüququna sahibsiniz.",
+    
+    transfers_title: "Məlumatlarınızı haraya göndəririk",
+    transfers_body: "Məlumatlarınız ölkənizdən kənarda bir serverə göndərilə və saxlanıla bilər. Biz lazımi qoruyucu tədbirləri təmin edirik.",
+  
+    terms_conditions: "Şərtlər və qaydalar",
+    terms_intro:
+      "Bu səhifədə “siz” dedikdə, alıcı nəzərdə tutulur. “Biz” dedikdə isə Bunzo komandası nəzərdə tutulur.",
 
+    terms_list: [
+      "# Əgər 13 yaşdan kiçiksinizsə, saytımıza daxil olmayın və istifadə etməyin.",
+      "# Saytın üzvü olmaq üçün 18 yaş və ya daha yuxarı olmalısınız.",
+      "# Düzgün və doğru məlumat verməlisiniz.",
+      "# Məhsul aldıqda, şərtlər və qaydalarla razı olduğunuzu təsdiqləyin.",
+      "# Ödənişiniz PayPal və ya digər üçüncü tərəf saytları vasitəsilə işlənəcək.",
+      "# Preview-də göstərilən şəkillər demo məqsədlidir, müəllif hüququ təmin olunmur. Demo şəkilləri dəyişdirməlisiniz.",
+      "# Məhsulu satın aldıqdan sonra yükləmə problemi yaşasanız, bizim əlaqə səhifəsindən email göndərə bilərsiniz.",
+      "# Yalnız məhsul zədələnmişsə geri ödəniş ediləcək. Məhsulun zədələnib-zədələnmədiyini öyrənmək üçün bizimlə əlaqə saxlayın.",
+      "# Saytın siyasəti, şərtləri, paketləri, qiymətləri, xüsusiyyətləri və digər məlumatları dəyişdirmək hüququmuz var.",
+      "# Saytın istifadəçisi olaraq, şərtlər və qaydalarla razılaşmalısınız.",
+      "# Şərtlərdə hər hansı dəyişiklik etsək, burada yerləşdirəcəyik."
+    ],
     // Contact.vue
     fullName: "Ad Soyad",
     email: "E-poçt",
@@ -52,6 +87,7 @@ const messages = {
     and: "və",
     write: "yazmaq",
     with: "ilə",
+    
 
     // BlogCard tagları
     tags: {
@@ -75,6 +111,9 @@ const messages = {
     a4: "Sed a turpis nec urna hendrerit malesuada. Pellentesque habitant morbi...",
     q5: "Rəqəmlər təcrübələr üçün uyğundur?",
     a5: "Curabitur at fringilla justo. Donec eu varius sem, nec sagittis risus...",
+
+
+    
 
     // Tarixlər
     dates: {
@@ -106,6 +145,7 @@ const messages = {
     pages: "Pages",
     allpost: "All Posts",
     login: "Login",
+     terms: "Terms",
     register: "Register",
     "already-have-account": "Already have an account?",
     "dont-have-account": "Don't have an account?",
@@ -130,6 +170,39 @@ const messages = {
     see_more: "See more",
     by: "By",
     no_posts_for: "No posts found for",
+    privacy_policy: "Privacy Policy",
+    who_we_are: "Who we are?",
+    website_address: "Our website address is: http://hashthemes.com",
+    loading_sections: "Loading additional sections…",
+    dynamic_content_note: "This content is dynamic: pass a backend endpoint via the <code>endpoint</code> prop that returns JSON.",
+    
+    embedded_title: "Embedded content from other websites",
+    embedded_body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Embedded content (e.g. videos, maps) from other websites behaves as if the visitor has visited the other website.",
+    
+    retention_title: "How long we retain your data",
+    retention_body: "We retain personal data only for as long as necessary to provide services, comply with legal obligations, resolve disputes and enforce agreements.",
+    
+    rights_title: "What rights you have over your data",
+    rights_body: "You have the right to access, correct, export, and delete your personal data. You can object to or restrict processing in certain circumstances.",
+    
+    transfers_title: "Where we send your data",
+    transfers_body: "Your data may be transferred to and stored at a destination outside your country. We take appropriate safeguards.",
+      terms_intro:
+      "When we’re saying “you” in this page, we’re referring to a buyer. When we’re saying “we” in this page, we’re referring to the Bunzo authority.",
+
+    terms_list: [
+      "# If you’re under 13 years, then do not visit/use our website.",
+      "# To be a member/user of our website, you need to be 18 years old or more.",
+      "# You need to provide true and correct information.",
+      "# When you purchase an item, confirm that you agree to our terms & conditions.",
+      "# Your payment will be processed through PayPal or other third-party websites.",
+      "# Images shown in the preview are for demo purposes only. We don’t provide image copyright. You need to replace the demo images.",
+      "# If you face any problem downloading your item after purchase, you can send an email from our contact page.",
+      "# We will refund only if the product is broken. To verify this, contact us.",
+      "# We have the right to change policy, terms & conditions, packages, prices, features, or any other content on this website.",
+      "# As a customer/user, you must agree with the terms & conditions.",
+      "# If we make any change in terms & conditions, we will post here."
+    ],
 
     // Contact.vue
     fullName: "Full Name",
@@ -138,6 +211,7 @@ const messages = {
     message: "Message",
     writeMessage: "Write your message",
     sendMessage: "Send Message",
+    
 
     // About.vue
     openPlatform: "Open Platform",
