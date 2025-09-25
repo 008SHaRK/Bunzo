@@ -83,7 +83,10 @@
               to="/contact"
               class="btn btn-primary position-absolute share-btn"
             >
-                 {{ $t("share") }}
+                <button type="submit" class="btn btn-primary send-btn">
+              {{ $t("share") || "Share" }}
+              <i class="bi bi-arrow-right ms-2"></i>
+            </button>
             </RouterLink>
           </div>
         </div>

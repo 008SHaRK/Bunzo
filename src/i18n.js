@@ -33,8 +33,17 @@ const messages = {
     featured_video: "Öne çıxan Post",
     see_more: "Daha çoxunu gör",
     by: "Tərəfindən",
+    no_posts_for: "Bu kateqoriya üçün heç bir paylaşım yoxdur",
 
-    // About.vue hissələri
+    // Contact.vue
+    fullName: "Ad Soyad",
+    email: "E-poçt",
+    phone: "Telefon",
+    message: "Mesaj",
+    writeMessage: "Mesajınızı yazın",
+    sendMessage: "Mesajı göndər",
+
+    // About.vue
     openPlatform: "Açıq Platforma",
     digitalPublishing: "Rəqəmsal Yayım",
     share: "Paylaş",
@@ -44,7 +53,7 @@ const messages = {
     write: "yazmaq",
     with: "ilə",
 
-    // BlogCard üçün taglar
+    // BlogCard tagları
     tags: {
       javascript: "Javascript",
       drupal: "Drupal",
@@ -54,7 +63,7 @@ const messages = {
       wordpress: "WordPress"
     },
 
-    // FAQ üçün sual və cavablar
+    // FAQ
     faqTitle: "Bəzi Suallar və Cavablar,<br /><strong>Buraya baxın.</strong>",
     q1: "Fərqli çizim növləri necə işləyir?",
     a1: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi...",
@@ -95,7 +104,7 @@ const messages = {
     contact: "Contact",
     categories: "Categories",
     pages: "Pages",
-    allpost: "All Post",
+    allpost: "All Posts",
     login: "Login",
     register: "Register",
     "already-have-account": "Already have an account?",
@@ -112,8 +121,7 @@ const messages = {
     privacy_policy: "Privacy Policy",
     customer_support: "Customer Support",
     terms_conditions: "Terms & Conditions",
-    footer_rights:
-      "All rights reserved © 2023 Bunzo Made with ❤ by Codecarnival",
+    footer_rights: "All rights reserved © 2023 Bunzo Made with ❤ by Codecarnival",
     subscribe_now: "Subscribe Now",
     authors: "From Author's",
     time: "min read",
@@ -121,8 +129,17 @@ const messages = {
     featured_video: "Featured Post",
     see_more: "See more",
     by: "By",
+    no_posts_for: "No posts found for",
 
-    // About.vue hissələri
+    // Contact.vue
+    fullName: "Full Name",
+    email: "Email",
+    phone: "Phone",
+    message: "Message",
+    writeMessage: "Write your message",
+    sendMessage: "Send Message",
+
+    // About.vue
     openPlatform: "Open Platform",
     digitalPublishing: "Digital Publishing",
     share: "Share",
@@ -139,6 +156,7 @@ const messages = {
       design: "Design",
       joomla: "Joomla",
       magento: "Magento",
+      wordpress: "WordPress"
     },
 
     // FAQ
@@ -154,7 +172,7 @@ const messages = {
     q5: "Are the numbers suitable for experiments?",
     a5: "Curabitur at fringilla justo. Donec eu varius sem, nec sagittis risus...",
 
-    // Tarixlər
+    // Dates
     dates: {
       apr12: "Apr 12, 2025",
       apr13: "Apr 13, 2025",

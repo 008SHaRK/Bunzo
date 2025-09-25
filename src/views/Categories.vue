@@ -1,35 +1,33 @@
 <template>
-  <!-- Tabs -->
-  <div class="tabs-container">
-    <div class="tabs">
-      <!-- Home -->
-      <RouterLink
-        to="/"
-        class="tab-link"
-        :class="{ active: $route.path === '/' }"
-      >
-        Home
-      </RouterLink>
-
-      <!-- Categories -->
-      <RouterLink
-        to="/categories"
-        class="tab-link"
-        :class="{
-          active: $route.path === '/categories',
-          'blog-active': $route.path.startsWith('/category'),
-        }"
-      >
-        Categories
-        <span
-          v-if="$route.path === '/categories' || $route.path.startsWith('/category')"
-          class="dot"
+ <!-- Tabs -->
+    <div class="tabs-container">
+      <div class="tabs">
+        <RouterLink
+          to="/"
+          class="tab-link"
+          :class="{ active: $route.path === '/' }"
         >
-          ●
-        </span>
-      </RouterLink>
+          {{ $t("home") }}
+        </RouterLink>
+
+        <RouterLink
+          to="/categories"
+          class="tab-link"
+          :class="{
+            active: $route.path === '/categories',
+            'blog-active': $route.path.startsWith('/category'),
+          }"
+        >
+          {{ $t("categories") }}
+          <span
+            v-if="$route.path === '/categories' || $route.path.startsWith('/category')"
+            class="dot"
+          >
+            ●
+          </span>
+        </RouterLink>
+      </div>
     </div>
-  </div>
 
   <!-- Category grid -->
   <div class="category-page container my-5">

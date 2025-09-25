@@ -16,7 +16,10 @@
         <RouterLink
           to="/contact"
           class="tab-link"
-          :class="{ active: $route.path === '/contact', 'contact-active': $route.path === '/contact' }"
+          :class="{
+            active: $route.path === '/contact',
+            'contact-active': $route.path === '/contact',
+          }"
         >
           {{ $t("contact") }}
           <span v-if="$route.path === '/contact'" class="dot">●</span>
@@ -32,54 +35,56 @@
           <h2 class="mb-4 fw-bold">{{ $t("contact_us") }}</h2>
           <form @submit.prevent="submitForm" class="contact-form">
             <div class="mb-3">
-              <label for="name" class="form-label">Full Name</label>
+              <label for="name" class="form-label">{{ $t("fullName") }}</label>
               <input
                 type="text"
                 id="name"
                 v-model="form.name"
                 class="form-control shadow-sm"
-                :placeholder="$t('fullName') || 'Enter your name'"
+                :placeholder="$t('fullName')"
                 required
               />
             </div>
 
             <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">{{ $t("email") }}</label>
               <input
                 type="email"
                 id="email"
                 v-model="form.email"
                 class="form-control shadow-sm"
-                :placeholder="$t('email') || 'Enter your email'"
+                :placeholder="$t('email')"
                 required
               />
             </div>
 
             <div class="mb-3">
-              <label for="phone" class="form-label">Phone</label>
+              <label for="phone" class="form-label">{{ $t("phone") }}</label>
               <input
                 type="tel"
                 id="phone"
                 v-model="form.phone"
                 class="form-control shadow-sm"
-                :placeholder="$t('phone') || 'Enter your phone'"
+                :placeholder="$t('phone')"
               />
             </div>
 
             <div class="mb-3">
-              <label for="message" class="form-label">{{ $t("message") || "Message" }}</label>
+              <label for="message" class="form-label">{{
+                $t("message")
+              }}</label>
               <textarea
                 id="message"
                 v-model="form.message"
                 class="form-control shadow-sm"
                 rows="5"
-                :placeholder="$t('writeMessage') || 'Write your message'"
+                :placeholder="$t('writeMessage')"
                 required
               ></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary send-btn">
-              {{ $t("sendMessage") || "Send Message" }}
+              {{ $t("sendMessage") }}
               <i class="bi bi-arrow-right ms-2"></i>
             </button>
           </form>
@@ -87,12 +92,12 @@
 
         <!-- Right: Map -->
         <div class="col-md-6">
-          <div class="map-wrapper ">
+          <div class="map-wrapper">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.8967022341185!2d-73.98542868459377!3d40.74881797932747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259af18a847eb%3A0x2a0e4b51e1b06e7c!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1694393823958!5m2!1sen!2sus"
               width="100%"
               height="450"
-              style="border:0; border-radius:12px;"
+              style="border: 0; border-radius: 12px"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
@@ -125,7 +130,7 @@ function submitForm() {
   form.message = "";
 }
 </script>
-  
+
 <style scoped>
 /* Tabs */
 .tabs-container {
@@ -208,13 +213,12 @@ function submitForm() {
 /* Map */
 .map-wrapper {
   overflow: hidden;
-   padding-top: 95px;
+  padding-top: 95px;
 }
 .map-wrapper iframe {
   width: 100%;
   height: 100%;
   min-height: 450px;
- 
 }
 
 /* Responsive */

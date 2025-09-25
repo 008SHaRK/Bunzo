@@ -1,8 +1,8 @@
 <template>
   <div class="container py-5">
-    <h2 class="mb-4">Trending Articles</h2>
+    <h2 class="mb-4">{{ $t("trend") }}</h2>
     <div class="row gy-4">
-      <div v-for="post in posts" :key="post.id" class="col-md-6">
+      <div v-for="post in posts" :key="post.id" class="col-12 col-md-6">
         <!-- Router link ilə card -->
         <router-link
           :to="`/post/${post.id}`"
@@ -13,19 +13,19 @@
 
           <!-- Məqalə məlumatı -->
           <div class="card-body">
-            <div class="d-flex align-items-center mb-2 flex-wrap">
+            <div class="d-flex align-items-center mb-2 flex-wrap justify-content-center justify-content-md-start">
               <!-- Tag -->
-              <span class="badge bg-light text-dark me-2">
+              <span class="badge bg-light text-dark me-2 mb-1">
                 {{ $t(`tags.${post.tag}`) }}
               </span>
               <!-- Tarix -->
-              <small class="text-muted">
+              <small class="text-muted mb-1">
                 📅 {{ $t(`dates.${post.date}`) }}
               </small>
             </div>
             <!-- Başlıq -->
             <h5 class="card-title">{{ $t(post.title) }}</h5>
-            <p>
+            <p class="card-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
               nihil.
             </p>
@@ -45,30 +45,12 @@ export default {
   data() {
     return {
       posts: [
-        {
-          id: 1,
-          image: img1,
-          tag: "javascript",
-          title: "title1",
-          date: "apr12",
-        },
+        { id: 1, image: img1, tag: "javascript", title: "title1", date: "apr12" },
         { id: 2, image: img2, tag: "drupal", title: "title2", date: "apr13" },
         { id: 3, image: img1, tag: "design", title: "title3", date: "apr14" },
         { id: 4, image: img2, tag: "design", title: "title4", date: "apr15" },
-        {
-          id: 5,
-          image: img1,
-          tag: "wordpress",
-          title: "title5",
-          date: "apr16",
-        },
-        {
-          id: 6,
-          image: img2,
-          tag: "wordpress",
-          title: "title6",
-          date: "apr17",
-        },
+        { id: 5, image: img1, tag: "wordpress", title: "title5", date: "apr16" },
+        { id: 6, image: img2, tag: "wordpress", title: "title6", date: "apr17" },
       ],
     };
   },
@@ -121,16 +103,21 @@ export default {
   color: #007bff;
 }
 
-/* --- RESPONSIVE DÜZƏLİŞ --- */
-@media (max-width: 768px) {
+.card-text {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* --- RESPONSIVE: 1200px-dən kiçik olanda --- */
+@media (max-width: 1200px) {
   .trending-card {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: column;   /* Şəkil yuxarı, yazılar altına */
+    text-align: left;
   }
 
   .card-img {
     width: 100%;
-    height: 180px;
+    height: 220px; /* bir az böyüdülmüş */
   }
 
   .card-body {
