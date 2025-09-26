@@ -45,70 +45,45 @@
     </section>
   </div>
 </template>
-
-<script>
-import { ref, reactive, onMounted } from "vue";
-import { useRoute, RouterLink } from "vue-router";
+<script setup>
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 
-export default {
-  name: "PrivacySections",
-  components: { RouterLink },
-  props: {
-    endpoint: { type: String, default: "" },
-    placeholders: { type: Object, default: () => ({}) },
+const props = defineProps({
+  placeholders: {
+    type: Object,
+    default: () => ({
+      embedded: null,
+      retention: null,
+      rights: null,
+      transfers: null,
+    }),
   },
-  setup(props) {
-    const { t } = useI18n();
-    const $route = useRoute();
+});
 
-    const loading = ref(false);
-    const sectionsOrder = ["embedded", "retention", "rights", "transfers"];
-    const sections = reactive({
-      embedded: {
-        title: t("embedded_title"),
-        body: props.placeholders.embedded || t("embedded_body"),
-      },
-      retention: {
-        title: t("retention_title"),
-        body: props.placeholders.retention || t("retention_body"),
-      },
-      rights: {
-        title: t("rights_title"),
-        body: props.placeholders.rights || t("rights_body"),
-      },
-      transfers: {
-        title: t("transfers_title"),
-        body: props.placeholders.transfers || t("transfers_body"),
-      },
-    });
+const { t } = useI18n();
 
-    const fetchFromBackend = async () => {
-      if (!props.endpoint) return;
-      loading.value = true;
-      try {
-        const res = await fetch(props.endpoint, {
-          headers: { Accept: "application/json" },
-        });
-        if (!res.ok) throw new Error("Network response not ok");
-        const json = await res.json();
-        for (const k of sectionsOrder) {
-          if (json[k]) sections[k].body = json[k];
-        }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        loading.value = false;
-      }
-    };
+const sectionsOrder = ["embedded", "retention", "rights", "transfers"];
 
-    onMounted(fetchFromBackend);
-
-    return { t, $route, loading, sections, sectionsOrder };
+const sections = computed(() => ({
+  embedded: {
+    title: t("embedded_title"),
+    body: props.placeholders.embedded || t("embedded_body"),
   },
-};
+  retention: {
+    title: t("retention_title"),
+    body: props.placeholders.retention || t("retention_body"),
+  },
+  rights: {
+    title: t("rights_title"),
+    body: props.placeholders.rights || t("rights_body"),
+  },
+  transfers: {
+    title: t("transfers_title"),
+    body: props.placeholders.transfers || t("transfers_body"),
+  },
+}));
 </script>
-
 <style scoped>
 .tabs-container {
   display: flex;

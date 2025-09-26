@@ -35,22 +35,22 @@
       class="img-fluid mb-4 mx-auto d-block"
     />
 
-  <div class="text-section">
-        <p>{{ $t('section1') }}</p>
+    <div class="text-section">
+      <p>{{ $t("section1") }}</p>
 
-    <h2 class="font-bold text-xl mt-4 mb-2">
-      {{ $t('title') }}
-    </h2>
+      <h2 class="font-bold text-xl mt-4 mb-2">
+        {{ $t("title") }}
+      </h2>
 
-    <p>{{ $t('section2') }}</p>
+      <p>{{ $t("section2") }}</p>
 
-    <!-- Burada artıq massivlə işləyirik -->
-    <ul class="list-disc pl-6 mt-3 space-y-2">
-      <li v-for="(item, index) in $tm('list')" :key="index">
-        {{ item }}
-      </li>
-    </ul>
-  </div>
+      <!-- Burada artıq massivlə işləyirik -->
+      <ul class="list-disc pl-6 mt-3 space-y-2">
+        <li v-for="(item, index) in $tm('list')" :key="index">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
     <!-- Share Buttons -->
     <div class="share-container mt-4">
       <span class="share-title">{{ t("share") }}:</span>
@@ -92,7 +92,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-vue";
 
 export default {
   name: "BlogDetail",
-  components: { CKEditor},
+  components: { CKEditor },
   setup() {
     const route = useRoute();
     const { t } = useI18n({ useScope: "global" });
@@ -253,7 +253,6 @@ img {
 .share-btn:hover {
   background: #e0e0e0;
 }
-
 
 /* CKEditor Post Content */
 .post-content .ck-editor__editable_inline {
