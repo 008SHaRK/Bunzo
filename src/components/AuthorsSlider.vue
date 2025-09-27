@@ -75,70 +75,14 @@ export default {
       currentPage: 1,
       itemsPerPage: 4,
       items: [
-        {
-          id: 1,
-          titleKey: "title1",
-          tag: "Javascript",
-          image: img1,
-          date: "12 Apr, 2022",
-          readTime: 3,
-        },
-        {
-          id: 2,
-          titleKey: "title2",
-          tag: "Wordpress",
-          image: img2,
-          date: "12 Apr, 2022",
-          readTime: 3,
-        },
-        {
-          id: 3,
-          titleKey: "title3",
-          tag: "Design",
-          image: img1,
-          date: "13 Apr, 2022",
-          readTime: 4,
-        },
-        {
-          id: 4,
-          titleKey: "title4",
-          tag: "Drupal",
-          image: img2,
-          date: "14 Apr, 2022",
-          readTime: 2,
-        },
-        {
-          id: 5,
-          titleKey: "title5",
-          tag: "Javascript",
-          image: img1,
-          date: "15 Apr, 2022",
-          readTime: 5,
-        },
-        {
-          id: 6,
-          titleKey: "title6",
-          tag: "Design",
-          image: img2,
-          date: "16 Apr, 2022",
-          readTime: 3,
-        },
-        {
-          id: 7,
-          titleKey: "title7",
-          tag: "SEO",
-          image: img1,
-          date: "17 Apr, 2022",
-          readTime: 4,
-        },
-        {
-          id: 8,
-          titleKey: "title8",
-          tag: "CMS",
-          image: img2,
-          date: "18 Apr, 2022",
-          readTime: 2,
-        },
+        { id: 1, titleKey: "title1", tag: "Javascript", image: img1, date: "12 Apr, 2022", readTime: 3 },
+        { id: 2, titleKey: "title2", tag: "Wordpress", image: img2, date: "12 Apr, 2022", readTime: 3 },
+        { id: 3, titleKey: "title3", tag: "Design", image: img1, date: "13 Apr, 2022", readTime: 4 },
+        { id: 4, titleKey: "title4", tag: "Drupal", image: img2, date: "14 Apr, 2022", readTime: 2 },
+        { id: 5, titleKey: "title5", tag: "Javascript", image: img1, date: "15 Apr, 2022", readTime: 5 },
+        { id: 6, titleKey: "title6", tag: "Design", image: img2, date: "16 Apr, 2022", readTime: 3 },
+        { id: 7, titleKey: "title7", tag: "SEO", image: img1, date: "17 Apr, 2022", readTime: 4 },
+        { id: 8, titleKey: "title8", tag: "CMS", image: img2, date: "18 Apr, 2022", readTime: 2 },
       ],
     };
   },
@@ -146,16 +90,9 @@ export default {
     totalPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
     },
-    paginatedItems() {
-      return this.layout === "slider"
-        ? this.items.slice(
-            (this.currentPage - 1) * this.itemsPerPage,
-            this.currentPage * this.itemsPerPage
-          )
-        : this.items;
-    },
     displayedItems() {
-      return this.paginatedItems;
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      return this.items.slice(start, start + this.itemsPerPage);
     },
   },
   methods: {
@@ -168,6 +105,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .article-card {
   background: #f9f9f9;
@@ -195,28 +133,12 @@ export default {
   transform: scale(1.1);
 }
 
-.card-body {
-  padding: 15px;
-}
+.card-body { padding: 15px; }
 
-.card-body .d-flex {
-  justify-content: flex-start;
-  align-items: center;
-}
+.card-body .d-flex { justify-content: flex-start; align-items: center; }
 
-.card-title a {
-  text-decoration: none;
-  color: #000;
-  transition: color 0.3s;
-}
-.card-title a:hover {
-  color: #007bff;
-}
-
-.card-excerpt {
-  color: #555;
-  font-size: 14px;
-}
+.card-title a { text-decoration: none; color: #000; transition: color 0.3s; }
+.card-title a:hover { color: #007bff; }
 
 .category-badge {
   background: #f1f1f1;
@@ -231,43 +153,13 @@ export default {
   color: #fff;
 }
 
-/* Fade animation */
 .fade-enter-active,
-.fade-leave-active {
-  transition: all 0.6s ease;
-}
-.fade-enter-from {
-  opacity: 0;
-  transform: translateX(30px);
-}
-.fade-leave-to {
-  opacity: 0;
-  transform: translateX(-30px);
-}
+.fade-leave-active { transition: all 0.6s ease; }
+.fade-enter-from { opacity: 0; transform: translateX(30px); }
+.fade-leave-to { opacity: 0; transform: translateX(-30px); }
 
-/* 2x2 Grid Responsive */
-.col-sm-6 {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-@media (max-width: 768px) {
-  .col-sm-6 {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-}
+.col-sm-6 { flex: 0 0 50%; max-width: 50%; }
 @media (max-width: 480px) {
-  .col-sm-6 {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-
-/* 770px altı tag və by admin solda */
-@media (max-width: 770px) {
-  .card-body .d-flex {
-    justify-content: flex-start !important;
-    text-align: left;
-  }
+  .col-sm-6 { flex: 0 0 100%; max-width: 100%; }
 }
 </style>

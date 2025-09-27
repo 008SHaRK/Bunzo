@@ -87,6 +87,13 @@ import { useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 import img1 from "@/assets/img/1-2.jpg";
 import img2 from "@/assets/img/2-1.jpg";
+import img3 from "@/assets/img/6-1.jpg";
+import img4 from "@/assets/img/9.jpg";
+import img5 from "@/assets/img/13.jpg";
+import img6 from "@/assets/img/14-1.jpg";
+
+
+
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-vue";
 
@@ -112,6 +119,42 @@ export default {
         title: "title2",
         tag: "magento",
         image: img2,
+        author: "authors",
+        date: "apr13",
+        readTime: 5,
+      },
+       {
+        id: 3,
+        title: "title3",
+        tag: "drupal",
+        image: img3,
+        author: "authors",
+        date: "apr13",
+        readTime: 5,
+      },
+       {
+        id: 4,
+        title: "title4",
+        tag: "magento",
+        image: img4,
+        author: "authors",
+        date: "apr13",
+        readTime: 5,
+      },
+       {
+        id: 5,
+        title: "title5",
+        tag: "magento",
+        image: img5,
+        author: "authors",
+        date: "apr13",
+        readTime: 5,
+      },
+       {
+        id: 6,
+        title: "title6",
+        tag: "magento",
+        image: img6,
         author: "authors",
         date: "apr13",
         readTime: 5,

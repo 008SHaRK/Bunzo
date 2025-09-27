@@ -109,7 +109,7 @@
               {{ $t("Salam") }} {{ user.name }}
             </span>
             <button class="btn btn-danger btn-sm" @click="logout">
-              Logout
+           {{ $t("logout") }}
             </button>
           </template>
         </div>

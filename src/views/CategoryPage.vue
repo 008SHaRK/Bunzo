@@ -3,22 +3,18 @@
     <!-- Tabs -->
     <div class="tabs-container">
       <div class="tabs">
-        <!-- Home Tab -->
         <RouterLink to="/" class="tab-link" :class="{ active: !categoryName }">
           {{ $t("home") }}
         </RouterLink>
 
-        <!-- Categories Tab -->
         <RouterLink
           to="/categories"
           class="tab-link"
           :class="{ active: categoryName === 'categories' }"
         >
           {{ $t("categories") }}
-          <span v-if="categoryName === 'categories'" class="dot">●</span>
         </RouterLink>
 
-        <!-- Selected Tag Tab -->
         <RouterLink
           v-if="categoryName && categoryName !== 'categories'"
           :to="`/category/${categoryName}`"
@@ -26,47 +22,31 @@
           :class="{ active: true }"
         >
           {{ $t(`tags.${categoryName.toLowerCase()}`) }}
-          <span class="dot">●</span>
         </RouterLink>
       </div>
     </div>
 
     <!-- Posts -->
     <div v-if="filteredPosts.length" class="row g-3 mt-4">
-      <div
-        v-for="item in filteredPosts"
-        :key="item.id"
-        class="col-md-6 col-lg-4"
-      >
+      <div v-for="item in filteredPosts" :key="item.id" class="col-md-6 col-lg-4">
         <div class="card h-100 shadow-sm article-card" @click="goToPost(item)">
           <div class="img-wrapper small-img">
             <img :src="item.image" class="card-img-top" alt="image" />
           </div>
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
-              <!-- Tag dynamically translated -->
-              <span class="badge category-badge me-2">{{
-                $t(`tags.${item.tag.toLowerCase()}`)
-              }}</span>
+              <span class="badge category-badge me-2">{{ $t(`tags.${item.tag.toLowerCase()}`) }}</span>
               <small class="text-muted">{{ $t("by") }} {{ item.author }}</small>
             </div>
-            <!-- Title dynamically translated if exists in i18n -->
-            <h6 class="card-title mt-1">
-              {{ $t(item.titleKey || item.title) }}
-            </h6>
-            <p class="text-muted small mb-0">
-              📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}
-            </p>
+            <h6 class="card-title mt-1">{{ $t(item.titleKey || item.title) }}</h6>
+            <p class="text-muted small mb-0">📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}</p>
           </div>
         </div>
       </div>
     </div>
 
     <p v-else class="mt-3">
-      {{ $t("no_posts_for") }}
-      {{
-        categoryName ? $t(`tags.${categoryName.toLowerCase()}`) : $t("allpost")
-      }}
+      {{ $t("no_posts_for") }} {{ categoryName ? $t(`tags.${categoryName.toLowerCase()}`) : $t("allpost") }}
     </p>
   </div>
 </template>
@@ -78,11 +58,9 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
-
     const goToPost = (post) => {
-      router.push(post.link);
+      router.push(`/post/${post.id}`); // blog detail route
     };
-
     return { goToPost };
   },
   computed: {
@@ -90,8 +68,7 @@ export default {
       return this.$route.params.name;
     },
     filteredPosts() {
-      if (!this.categoryName || this.categoryName === "categories")
-        return posts;
+      if (!this.categoryName || this.categoryName === "categories") return posts;
       return posts.filter(
         (p) => p.tag.toLowerCase() === this.categoryName.toLowerCase()
       );
@@ -99,6 +76,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .tabs-container {

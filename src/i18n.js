@@ -15,6 +15,7 @@ const messages = {
     "already-have-account": "Artıq hesabınız var?",
     "dont-have-account": "Hesabınız yoxdur?",
     Salam: "Salam",
+    logout: "Çıxış",
     company: "Şirkət",
     faq: "Tez-tez verilən suallar",
     careers: "Karyera",
@@ -95,8 +96,8 @@ const messages = {
       "# Saytın istifadəçisi olaraq, şərtlər və qaydalarla razılaşmalısınız.",
       "# Şərtlərdə hər hansı dəyişiklik etsək, burada yerləşdirəcəyik.",
     ],
-  
-      section1: `Lorem Ipsum mətinin bir çox variasiyaları mövcuddur, lakin əksəriyyəti dəyişdirilmişdir, gülməli əlavələr və ya təsadüfi sözlər əlavə edilmişdir ki, bu da inandırıcı görünmür. Əgər Lorem Ipsum istifadə edəcəksinizsə, mətnin ortasında xoşagəlməz heç nə olmadığından əmin olmalısınız. İnternetdəki bütün Lorem Ipsum generatorları lazım olduqda əvvəlcədən müəyyən edilmiş parçaları təkrar edir, bu da onu ilk həqiqi generator edir.`,
+
+    section1: `Lorem Ipsum mətinin bir çox variasiyaları mövcuddur, lakin əksəriyyəti dəyişdirilmişdir, gülməli əlavələr və ya təsadüfi sözlər əlavə edilmişdir ki, bu da inandırıcı görünmür. Əgər Lorem Ipsum istifadə edəcəksinizsə, mətnin ortasında xoşagəlməz heç nə olmadığından əmin olmalısınız. İnternetdəki bütün Lorem Ipsum generatorları lazım olduqda əvvəlcədən müəyyən edilmiş parçaları təkrar edir, bu da onu ilk həqiqi generator edir.`,
 
     title: `Gözəl dizaynlar yaradın və daha çox müştəri qazanın`,
 
@@ -179,6 +180,7 @@ const messages = {
     pages: "Pages",
     allpost: "All Posts",
     login: "Login",
+    logout: "Logout",
     terms: "Terms",
     register: "Register",
     "already-have-account": "Already have an account?",
@@ -263,7 +265,7 @@ const messages = {
       "# As a customer/user, you must agree with the terms & conditions.",
       "# If we make any change in terms & conditions, we will post here.",
     ],
-        section1: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.`,
+    section1: `There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don’t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.`,
 
     title: `Create beautiful designs that will help convert more customers`,
 

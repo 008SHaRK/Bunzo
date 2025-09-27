@@ -9,7 +9,7 @@
         <span class="author">{{ $t(`${post.author}`) }}</span>
       </div>
       <h3 class="title">{{ $t(`${post.title}`) }}</h3>
-      <p class="excerpt">{{ $t(`excerpts.${post.excerpt}`) }}</p>
+      <p class="excerpt">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum, culpa?</p>
       <div class="meta">
         <span>📅 {{ $t(`${post.date}`) }}</span>
         <span>⏱ {{ post.readTime }} {{ $t("time") }}</span>

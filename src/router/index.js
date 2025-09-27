@@ -9,6 +9,7 @@ import AllPosts from '../views/AllPosts.vue'
 import CategoryPage from "@/views/CategoryPage.vue";
 import Categories from '../views/Categories.vue' // Statik categories səhifəsi
 import BlogDetail from '../views/BlogDetail.vue' // 🔹 Yeni əlavə
+import Search from "../views/Search.vue";
 
 
 const routes = [
@@ -19,6 +20,7 @@ const routes = [
   { path: '/privacy', component: PrivacyPolicy },
   { path: '/terms', component: Terms },
   { path: '/all-posts', component: AllPosts },
+    { path: "/search", component: Search }, // yeni search page
 
   // Statik categories page
   { path: '/categories', component: Categories, name: 'Categories' },
