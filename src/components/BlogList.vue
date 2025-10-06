@@ -11,7 +11,7 @@
         <div class="blog-grid">
           <BlogCard
             v-for="post in paginatedPosts"
-            :key="post.link"
+            :key="post.id"
             :post="post"
           />
         </div>
@@ -33,12 +33,7 @@
 <script>
 import SidebarCategory from "@/components/SidebarCategory.vue";
 import BlogCard from "@/components/BlogCard.vue";
-
-// Şəkillər
-import img1 from "@/assets/img/1-2.jpg";
-import img2 from "@/assets/img/2-1.jpg";
-import img3 from "@/assets/img/14-1.jpg";
-import img4 from "@/assets/img/13.jpg";
+import { usePostStore } from "@/stores/postStore";
 
 export default {
   name: "BlogList",
@@ -51,27 +46,20 @@ export default {
         { title: "Drupal", link: "/category/drupal" },
         { title: "Joomla", link: "/category/joomla" }
       ],
-      posts: [
-        { title: "Post 1", excerpt: "Lorem ipsum dolor sit amet", author: "John", date: "01 Jan", link: "/post/1", image: img1 },
-        { title: "Post 2", excerpt: "Lorem ipsum dolor sit amet", author: "Jane", date: "02 Jan", link: "/post/2", image: img2 },
-        { title: "Post 3", excerpt: "Lorem ipsum dolor sit amet", author: "Alice", date: "03 Jan", link: "/post/3", image: img3 },
-        { title: "Post 4", excerpt: "Lorem ipsum dolor sit amet", author: "Bob", date: "04 Jan", link: "/post/4", image: img4 },
-        { title: "Post 5", excerpt: "Lorem ipsum dolor sit amet", author: "Mary", date: "05 Jan", link: "/post/5", image: img1 },
-        { title: "Post 6", excerpt: "Lorem ipsum dolor sit amet", author: "Tom", date: "06 Jan", link: "/post/6", image: img2 },
-        { title: "Post 7", excerpt: "Lorem ipsum dolor sit amet", author: "Linda", date: "07 Jan", link: "/post/7", image: img3 },
-        { title: "Post 8", excerpt: "Lorem ipsum dolor sit amet", author: "Sam", date: "08 Jan", link: "/post/8", image: img4 }
-      ],
       currentPage: 1,
       postsPerPage: 4
     };
   },
   computed: {
+    postStore() {
+      return usePostStore(); // Pinia store instance
+    },
     totalPages() {
-      return Math.ceil(this.posts.length / this.postsPerPage);
+      return Math.ceil(this.postStore.posts.length / this.postsPerPage);
     },
     paginatedPosts() {
       const start = (this.currentPage - 1) * this.postsPerPage;
-      return this.posts.slice(start, start + this.postsPerPage);
+      return this.postStore.posts.slice(start, start + this.postsPerPage);
     }
   },
   methods: {
@@ -88,7 +76,6 @@ export default {
   gap: 20px;
 }
 
-/* Pagination başlıqla eyni səviyyədə */
 .pagination-section {
   display: flex;
   justify-content: space-between;
@@ -120,7 +107,6 @@ export default {
   font-weight: bold;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .blog-grid { grid-template-columns: 1fr; }
 }

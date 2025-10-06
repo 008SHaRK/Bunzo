@@ -2,8 +2,9 @@
   <section class="trending-topic">
     <div class="container">
       <div class="header-row">
+        <!-- Sol tərəf -->
         <div class="left-side">
-          <h3 class="title">{{ $t("trend") }}</h3>
+          <h3 class="title">Trending Topics</h3>
           <div class="controls">
             <button class="nav-btn" @click="prevSlide">
               <i class="bi bi-arrow-left-short"></i>
@@ -14,6 +15,7 @@
           </div>
         </div>
 
+        <!-- Slider -->
         <div class="slider">
           <div
             class="slider-track"
@@ -31,6 +33,7 @@
               @click="handleClick(item)"
             >
               <div class="overlay"></div>
+              <!-- Mətn birbaşa göstərilir -->
               <span>{{ item.title }}</span>
             </div>
           </div>
@@ -41,12 +44,7 @@
 </template>
 
 <script>
-import designImg from "@/assets/img/1-2.jpg";
-import drupalImg from "@/assets/img/2-1.jpg";
-import jsImg from "@/assets/img/14-1.jpg";
-import joomlaImg from "@/assets/img/13.jpg";
-import magentoImg from "@/assets/img/16.jpg";
-import wpImg from "@/assets/img/6-1.jpg";
+import { useCategoryStore } from "@/stores/useCategoryStore";
 
 export default {
   name: "TrendingTopic",
@@ -57,37 +55,29 @@ export default {
       gap: 20,
       noTransition: false,
       autoPlayInterval: null,
-      items: [
-        { title: "Design", image: designImg, link: "/category/design" },
-        { title: "Drupal", image: drupalImg, link: "/category/drupal" },
-        { title: "Javascript", image: jsImg, link: "/category/javascript" },
-        { title: "Joomla", image: joomlaImg, link: "/category/joomla" },
-        { title: "Magento", image: magentoImg, link: "/category/magento" },
-        { title: "WordPress", image: wpImg, link: "/category/wordpress" },
-      ],
       repeatCount: 3,
     };
   },
   computed: {
+    categories() {
+      const store = useCategoryStore();
+      return store.getCategories();
+    },
     duplicatedItems() {
       let arr = [];
       for (let i = 0; i < this.repeatCount; i++) {
-        arr = arr.concat(this.items);
+        arr = arr.concat(this.categories);
       }
       return arr;
-    },
-    totalCards() {
-      return this.items.length * this.repeatCount;
     },
   },
   methods: {
     nextSlide() {
       this.currentIndex++;
-      // Sonsuz scroll effekti üçün track-ın ortasına qayıt
-      if (this.currentIndex >= this.items.length * (this.repeatCount - 1)) {
+      if (this.currentIndex >= this.categories.length * (this.repeatCount - 1)) {
         setTimeout(() => {
           this.noTransition = true;
-          this.currentIndex = this.items.length * (this.repeatCount / 2 - 1);
+          this.currentIndex = this.categories.length * (this.repeatCount / 2 - 1);
           this.$nextTick(() => (this.noTransition = false));
         }, 600);
       }
@@ -97,7 +87,7 @@ export default {
       if (this.currentIndex < 0) {
         setTimeout(() => {
           this.noTransition = true;
-          this.currentIndex = this.items.length * (this.repeatCount / 2);
+          this.currentIndex = this.categories.length * (this.repeatCount / 2);
           this.$nextTick(() => (this.noTransition = false));
         }, 600);
       }

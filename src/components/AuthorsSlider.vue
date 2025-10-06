@@ -39,13 +39,11 @@
           <div class="card-body text-start">
             <div class="d-flex justify-content-start align-items-center mb-2">
               <span class="badge category-badge me-2">{{ item.tag }}</span>
-              <small class="text-muted">{{ $t("by") }} admin</small>
+              <small class="text-muted">{{ $t("by") }} {{ item.author }}</small>
             </div>
 
             <h6 class="card-title mb-2">
-              <router-link :to="`/post/${item.id}`">{{
-                $t(item.titleKey)
-              }}</router-link>
+              <router-link :to="`/post/${item.id}`">{{ $t(`${item.title}`) }}</router-link>
             </h6>
 
             <p>
@@ -54,7 +52,7 @@
             </p>
 
             <p class="text-muted small mb-0">
-              📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}
+            📅 <span>{{ $t(`dates.${item.date}`) }}</span> • ⏱ {{ item.readTime }} {{ $t("time") }}
             </p>
           </div>
         </div>
@@ -64,8 +62,7 @@
 </template>
 
 <script>
-import img1 from "@/assets/img/1-2.jpg";
-import img2 from "@/assets/img/2-1.jpg";
+import { usePostStore } from "@/stores/postStore";
 
 export default {
   name: "AuthorsSlider",
@@ -74,25 +71,18 @@ export default {
     return {
       currentPage: 1,
       itemsPerPage: 4,
-      items: [
-        { id: 1, titleKey: "title1", tag: "Javascript", image: img1, date: "12 Apr, 2022", readTime: 3 },
-        { id: 2, titleKey: "title2", tag: "Wordpress", image: img2, date: "12 Apr, 2022", readTime: 3 },
-        { id: 3, titleKey: "title3", tag: "Design", image: img1, date: "13 Apr, 2022", readTime: 4 },
-        { id: 4, titleKey: "title4", tag: "Drupal", image: img2, date: "14 Apr, 2022", readTime: 2 },
-        { id: 5, titleKey: "title5", tag: "Javascript", image: img1, date: "15 Apr, 2022", readTime: 5 },
-        { id: 6, titleKey: "title6", tag: "Design", image: img2, date: "16 Apr, 2022", readTime: 3 },
-        { id: 7, titleKey: "title7", tag: "SEO", image: img1, date: "17 Apr, 2022", readTime: 4 },
-        { id: 8, titleKey: "title8", tag: "CMS", image: img2, date: "18 Apr, 2022", readTime: 2 },
-      ],
     };
   },
   computed: {
+    postStore() {
+      return usePostStore(); // Pinia store instance
+    },
     totalPages() {
-      return Math.ceil(this.items.length / this.itemsPerPage);
+      return Math.ceil(this.postStore.posts.length / this.itemsPerPage);
     },
     displayedItems() {
       const start = (this.currentPage - 1) * this.itemsPerPage;
-      return this.items.slice(start, start + this.itemsPerPage);
+      return this.postStore.posts.slice(start, start + this.itemsPerPage);
     },
   },
   methods: {
@@ -133,12 +123,23 @@ export default {
   transform: scale(1.1);
 }
 
-.card-body { padding: 15px; }
+.card-body {
+  padding: 15px;
+}
 
-.card-body .d-flex { justify-content: flex-start; align-items: center; }
+.card-body .d-flex {
+  justify-content: flex-start;
+  align-items: center;
+}
 
-.card-title a { text-decoration: none; color: #000; transition: color 0.3s; }
-.card-title a:hover { color: #007bff; }
+.card-title a {
+  text-decoration: none;
+  color: #000;
+  transition: color 0.3s;
+}
+.card-title a:hover {
+  color: #007bff;
+}
 
 .category-badge {
   background: #f1f1f1;
@@ -154,12 +155,26 @@ export default {
 }
 
 .fade-enter-active,
-.fade-leave-active { transition: all 0.6s ease; }
-.fade-enter-from { opacity: 0; transform: translateX(30px); }
-.fade-leave-to { opacity: 0; transform: translateX(-30px); }
+.fade-leave-active {
+  transition: all 0.6s ease;
+}
+.fade-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
 
-.col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+.col-sm-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
 @media (max-width: 480px) {
-  .col-sm-6 { flex: 0 0 100%; max-width: 100%; }
+  .col-sm-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 </style>

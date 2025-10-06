@@ -28,55 +28,72 @@
 
     <!-- Posts -->
     <div v-if="filteredPosts.length" class="row g-3 mt-4">
-      <div v-for="item in filteredPosts" :key="item.id" class="col-md-6 col-lg-4">
+      <div
+        v-for="item in filteredPosts"
+        :key="item.id"
+        class="col-md-6 col-lg-4"
+      >
         <div class="card h-100 shadow-sm article-card" @click="goToPost(item)">
           <div class="img-wrapper small-img">
             <img :src="item.image" class="card-img-top" alt="image" />
           </div>
           <div class="card-body">
             <div class="d-flex align-items-center mb-2">
-              <span class="badge category-badge me-2">{{ $t(`tags.${item.tag.toLowerCase()}`) }}</span>
-              <small class="text-muted">{{ $t("by") }} {{ item.author }}</small>
+              <span class="badge category-badge me-2">
+                {{ $t(`tags.${item.tag.toLowerCase()}`) }}
+              </span>
+              <small class="text-muted">
+                {{ $t("by") }} {{ item.author }}
+              </small>
             </div>
-            <h6 class="card-title mt-1">{{ $t(item.titleKey || item.title) }}</h6>
-            <p class="text-muted small mb-0">📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}</p>
+
+            <h6 class="card-title mt-1">{{ $t(item.title) }}</h6>
+
+            <p class="text-muted small mb-0">
+              📅 {{ item.date }} • ⏱ {{ item.readTime }} {{ $t("time") }}
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     <p v-else class="mt-3">
-      {{ $t("no_posts_for") }} {{ categoryName ? $t(`tags.${categoryName.toLowerCase()}`) : $t("allpost") }}
+      {{ $t("no_posts_for") }}
+      {{ categoryName ? $t(`tags.${categoryName.toLowerCase()}`) : $t("allpost") }}
     </p>
   </div>
 </template>
 
 <script>
-import posts from "@/data/posts.js";
+import { usePostStore } from "@/stores/postStore"; 
 import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const router = useRouter();
+    const postStore = usePostStore();
+
     const goToPost = (post) => {
-      router.push(`/post/${post.id}`); // blog detail route
+      router.push(`/post/${post.id}`);
     };
-    return { goToPost };
+
+    return { router, postStore, goToPost };
   },
   computed: {
     categoryName() {
       return this.$route.params.name;
     },
     filteredPosts() {
-      if (!this.categoryName || this.categoryName === "categories") return posts;
-      return posts.filter(
+      if (!this.categoryName || this.categoryName === "categories") {
+        return this.postStore.posts;
+      }
+      return this.postStore.posts.filter(
         (p) => p.tag.toLowerCase() === this.categoryName.toLowerCase()
       );
     },
   },
 };
 </script>
-
 
 <style scoped>
 .tabs-container {
@@ -107,18 +124,12 @@ export default {
   font-weight: 600;
   color: #000;
 }
-.dot {
-  font-size: 12px;
-  line-height: 1;
-  color: #9b30ff;
-}
-
-/* Article Card */
 .article-card {
   background: #f9f9f9;
   border: none;
   border-radius: 12px;
   transition: transform 0.3s;
+  cursor: pointer;
 }
 .article-card:hover {
   transform: translateY(-5px);

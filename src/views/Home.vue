@@ -19,12 +19,14 @@
             :key="post.id"
             :post="{
               ...post,
-              title: $t(`title${post.id}`),
+              title: $t(post.title),
               tag: $t(`tags.${post.tag.toLowerCase()}`),
-              date: $t(`dates.${post.dateKey}`)
+              date: $t(`dates.${post.date}`)
             }"
           />
         </div>
+
+       
       </div>
     </div>
 
@@ -46,6 +48,10 @@
 </template>
 
 <script>
+import { ref, computed } from "vue";
+import { usePostStore } from "@/stores/postStore";
+import { storeToRefs } from "pinia";
+
 import SidebarCategory from "@/components/SidebarCategory.vue";
 import BlogCard from "@/components/BlogCard.vue";
 import TrendingArticles from "@/components/TrendingArticles.vue";
@@ -64,80 +70,50 @@ export default {
     AuthorsSlider,
     TrendingArticles,
     TrendingTopic,
-    FeaturedVideo
+    FeaturedVideo,
   },
-  data() {
-    return {
-      categories: [
-        { title: "Design", image: img1, link: "/category/design" },
-        { title: "Drupal", image: img2, link: "/category/drupal" },
-        { title: "Javascript", image: img1, link: "/category/javascript" },
-        { title: "Joomla", image: img2, link: "/category/joomla" },
-      ],
-      posts: [
-        {
-          id: 1,
-          excerpt:
-            "You need to be sure there isn’t anything embarrassing hidden in the middle of text",
-          image: img1,
-          tag: "javascript",
-          author: "Uzzal Hossain",
-          dateKey: "apr12",
-          readTime: 3,
-        },
-        {
-          id: 2,
-          excerpt:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-          image: img2,
-          tag: "drupal",
-          author: "Uzzal Hossain",
-          dateKey: "apr13",
-          readTime: 3,
-        },
-        {
-          id: 3,
-          excerpt: "Third post excerpt",
-          image: img1,
-          tag: "design",
-          author: "Uzzal Hossain",
-          dateKey: "apr14",
-          readTime: 2,
-        },
-        {
-          id: 4,
-          excerpt: "Fourth post excerpt",
-          image: img2,
-          tag: "drupal",
-          author: "Uzzal Hossain",
-          dateKey: "apr15",
-          readTime: 4,
-        },
-      ],
-      currentPage: 1,
-      postsPerPage: 2,
+  setup() {
+    const postStore = usePostStore();
+    const { posts } = storeToRefs(postStore);
+
+    const categories = [
+      { title: "Design", image: img1, link: "/category/design" },
+      { title: "Drupal", image: img2, link: "/category/drupal" },
+      { title: "Javascript", image: img1, link: "/category/javascript" },
+      { title: "Joomla", image: img2, link: "/category/joomla" },
+    ];
+
+    const currentPage = ref(1);
+    const postsPerPage = ref(2);
+
+    const totalPages = computed(() => Math.ceil(posts.value.length / postsPerPage.value));
+
+    const paginatedPosts = computed(() => {
+      const start = (currentPage.value - 1) * postsPerPage.value;
+      return posts.value.slice(start, start + postsPerPage.value);
+    });
+
+    const prevPage = () => {
+      if (currentPage.value > 1) currentPage.value--;
     };
-  },
-  computed: {
-    totalPages() {
-      return Math.ceil(this.posts.length / this.postsPerPage);
-    },
-    paginatedPosts() {
-      const start = (this.currentPage - 1) * this.postsPerPage;
-      return this.posts.slice(start, start + this.postsPerPage);
-    },
-  },
-  methods: {
-    prevPage() {
-      if (this.currentPage > 1) this.currentPage--;
-    },
-    nextPage() {
-      if (this.currentPage < this.totalPages) this.currentPage++;
-    },
+
+    const nextPage = () => {
+      if (currentPage.value < totalPages.value) currentPage.value++;
+    };
+
+    return {
+      posts,
+      categories,
+      currentPage,
+      postsPerPage,
+      totalPages,
+      paginatedPosts,
+      prevPage,
+      nextPage,
+    };
   },
 };
 </script>
-
 
 <style scoped>
 .blog-layout {
@@ -173,7 +149,7 @@ export default {
 }
 
 .see-more:hover i {
-  transform: translateX(3px); 
+  transform: translateX(3px);
 }
 
 .see-more span,
@@ -181,5 +157,20 @@ export default {
   font-size: 14px;
   font-weight: 500;
   color: #000;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: none;
+  background: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 </style>

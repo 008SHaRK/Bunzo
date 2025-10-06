@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 // Vue
 import { createApp } from 'vue';
 import App from './App.vue';
+import { createPinia } from "pinia";
 import router from './router';
 
 // CKEditor
@@ -19,6 +20,6 @@ const app = createApp(App);
 app.use(router);
 app.use(CKEditor);
 app.use(i18n);
-
+app.use(createPinia());
 // App-ı mount et
 app.mount('#app');

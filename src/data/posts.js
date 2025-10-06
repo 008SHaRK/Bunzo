@@ -6,9 +6,10 @@ export default [
     tag: "design",
     image: "/img/1-2.jpg",
     date: "2025-09-12",
+    body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
     readTime: 5,
     author: "Admin",
-    link: "/categories/design"
+    link: "/categories/design",
   },
   {
     id: 2,
@@ -17,9 +18,10 @@ export default [
     tag: "drupal",
     image: "/img/2-1.jpg",
     date: "2025-09-10",
+    body: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque architecto",
     readTime: 6,
     author: "John Doe",
-    link: "/categories/drupal"
+    link: "/categories/drupal",
   },
   {
     id: 3,
@@ -28,9 +30,10 @@ export default [
     tag: "javascript",
     image: "/img/14-1.jpg",
     date: "2025-09-08",
+    body: "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit",
     readTime: 4,
     author: "Jane Smith",
-    link: "/categories/javascript"
+    link: "/categories/javascript",
   },
   {
     id: 4,
@@ -39,9 +42,10 @@ export default [
     tag: "javascript",
     image: "/img/6-1.jpg",
     date: "2025-09-05",
+    body: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
     readTime: 7,
     author: "Admin",
-    link: "/categories/javascript"
+    link: "/categories/javascript",
   },
   {
     id: 5,
@@ -50,9 +54,10 @@ export default [
     tag: "joomla",
     image: "/img/9.jpg",
     date: "2025-09-03",
+    body: "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae",
     readTime: 5,
     author: "John Doe",
-    link: "/categories/joomla"
+    link: "/categories/joomla",
   },
   {
     id: 6,
@@ -61,9 +66,10 @@ export default [
     tag: "joomla",
     image: "/img/16.jpg",
     date: "2025-09-01",
+    body: "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas",
     readTime: 4,
     author: "Admin",
-    link: "/categories/joomla"
+    link: "/categories/joomla",
   },
   {
     id: 7,
@@ -72,9 +78,10 @@ export default [
     tag: "magento",
     image: "/img/1-2.jpg",
     date: "2025-08-30",
+    body: "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae",
     readTime: 6,
     author: "Jane Smith",
-    link: "/categories/magento"
+    link: "/categories/magento",
   },
   {
     id: 8,
@@ -83,9 +90,10 @@ export default [
     tag: "magento",
     image: "/img/16.jpg",
     date: "2025-08-28",
+    body: "consectetur animi nesciunt iure dolore\nenim quia ad\nveniam autem ut quam aut nobis\net est aut quod aut provident voluptas autem voluptas",
     readTime: 7,
     author: "Admin",
-    link: "/categories/magento"
+    link: "/categories/magento",
   },
   {
     id: 9,
@@ -94,8 +102,9 @@ export default [
     tag: "wordpress",
     image: "/img/9.jpg",
     date: "2025-08-25",
+    body: "quo et expedita modi cum officia vel magni\ndoloribus qui repudiandae\nvero nisi sit\nquos veniam quod sed accusamus veritatis error",
     readTime: 4,
     author: "John Doe",
-    link: "/categories/wordpress"
-  }
+    link: "/categories/wordpress",
+  },
 ];

@@ -3,12 +3,12 @@
     <div class="container d-flex justify-content-end">
       <div class="search-box position-relative">
         <form class="d-flex search-form" @submit.prevent="goSearch">
-          <input
-            v-model="searchQuery"
-            type="text"
-            class="form-control me-2"
-            placeholder="Axtar..."
-          />
+        <input
+  v-model="searchQuery"
+  type="text"
+  class="form-control me-2"
+  :placeholder="$t('search')"
+/>
           <button class="btn btn-primary" type="submit">
             <i class="bi bi-search"></i>
           </button>
